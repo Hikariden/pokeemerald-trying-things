@@ -1269,7 +1269,7 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
      && moveEffect != EFFECT_SEMI_INVULNERABLE
      && aiData->holdEffects[battlerDef] != HOLD_EFFECT_POWER_HERB)
     {
-        if (!BreaksThroughSemiInvulnerableState(battlerAtk, battlerDef, abilityAtk, abilityDef, move, GetMoveTwoTurnAttackStatus(predictedMove)))
+        if (!BreaksThroughSemiInvulnerableState(battlerAtk, battlerDef, abilityAtk, abilityDef, move, GetTwoTurnMoveSemiInvulnerability(predictedMove)))
             RETURN_SCORE_MINUS(10);
     }
 
@@ -2447,7 +2447,7 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
             ADJUST_SCORE(-10); // Don't Fly/dig/etc if opponent is going to fly/dig/etc after you
 
         if (BattlerWillFaintFromWeather(battlerAtk, aiData->abilities[battlerAtk])
-          && GetMoveTwoTurnAttackStatus(move) == STATE_ON_AIR)
+          && GetTwoTurnMoveSemiInvulnerability(move) == STATE_ON_AIR)
             ADJUST_SCORE(-10); // Attacker will faint while in the air
         break;
     case EFFECT_HEALING_WISH:   //healing wish, lunar dance
@@ -4535,7 +4535,7 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
             ADJUST_SCORE(BEST_EFFECT);
         break;
     case EFFECT_MEAN_LOOK:
-        if (ShouldTrap(battlerAtk, battlerDef, move))
+        if (ShouldTrap(battlerAtk, battlerDef, move, DONT_CONSIDER_WRAP_DAMAGE))
             ADJUST_SCORE(GOOD_EFFECT);
         break;
     case EFFECT_FOCUS_ENERGY:
@@ -5369,7 +5369,7 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_FAIRY_LOCK:
-        if (ShouldTrap(battlerAtk, battlerDef, move))
+        if (ShouldTrap(battlerAtk, battlerDef, move, DONT_CONSIDER_WRAP_DAMAGE))
             ADJUST_SCORE(BEST_EFFECT);
         break;
     case EFFECT_QUASH:
@@ -5794,7 +5794,7 @@ static s32 AI_CalcAdditionalEffectScore(enum BattlerId battlerAtk, enum BattlerI
                 }
                 break;
             case MOVE_EFFECT_WRAP:
-                if (!HasMoveWithEffect(battlerDef, EFFECT_RAPID_SPIN) && ShouldTrap(battlerAtk, battlerDef, move))
+                if (!HasMoveWithEffect(battlerDef, EFFECT_RAPID_SPIN) && ShouldTrap(battlerAtk, battlerDef, move, CONSIDER_WRAP_DAMAGE))
                     ADJUST_SCORE(BEST_EFFECT);
                 break;
             case MOVE_EFFECT_SALT_CURE:

@@ -119,14 +119,15 @@ struct SpecialStatus
     u8 poisonPuppeteer:1;
     u8 attackerInParty:1; // Fututre Sight / Doom Desire
     u8 abilityRedirected:1;
-    u8 restoredBattlerSprite: 1;
+    u8 restoredBattlerSprite:1;
     // End of byte
     u8 faintedHasReplacement:1;
     u8 afterYou:1;
     u8 damagedByAttack:1;
     u8 dancerUsedMove:1;
     u8 criticalHit:1;
-    u8 padding:3;
+    u8 berryReducedMessagePrinted:1;
+    u8 padding:2;
     // End of byte
     u8 gemParam:7;
     u8 gemBoost:1;
@@ -701,12 +702,9 @@ struct BattleStruct
     s16 moveDamage[MAX_BATTLERS_COUNT];
     u16 innardsOutHpLost[MAX_BATTLERS_COUNT];
     u32 moveResultFlags[MAX_BATTLERS_COUNT];
-    u8 doneDoublesSpreadHit:1;
-    u8 unused4:1;
-    u8 calculatedSpreadMoveAccuracy:1;
-    u8 printedStrongWindsWeakenedAttack:1;
     u8 numSpreadTargets:3;
     u8 moldBreakerActive:1;
+    u8 unused4:4;
     struct MessageStatus slideMessageStatus;
     u8 trainerSlideSpriteIds[MAX_BATTLERS_COUNT];
     u8 hazardsQueue[NUM_BATTLE_SIDES][HAZARDS_MAX_COUNT];
