@@ -102,7 +102,7 @@ static void SpriteCB_AnimFaintOpponent(struct Sprite *sprite);
 static void SpriteCB_BlinkVisible(struct Sprite *sprite);
 static void SpriteCB_Idle(struct Sprite *sprite);
 static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite);
-static void TurnValuesCleanUp(bool8 var0);
+static void TurnValuesCleanUp(bool32 endTurn);
 static void SpriteCB_BounceEffect(struct Sprite *sprite);
 static void BattleStartClearSetData(void);
 static void DoBattleIntro(void);
@@ -2985,7 +2985,7 @@ void SwitchInClearSetData(enum BattlerId battler, struct Volatiles *volatilesCop
         // Transfer Baton Passable volatile statuses
         VOLATILE_DEFINITIONS(UNPACK_VOLATILE_BATON_PASSABLES)
         /* Expands to the following (compiler removes `if` statements):
-         * gBattleMons[battler].volatiles.confusionTurns = volatilesCopy->confusionTurns;
+         * gBattleMons[battler].volatiles.confusionTimer = volatilesCopy->confusionTimer;
          * gBattleMons[battler].volatiles.substitute = volatilesCopy->substitute;
          * gBattleMons[battler].volatiles.escapePrevention = volatilesCopy->escapePrevention;
          * ...etc
@@ -4746,11 +4746,11 @@ static void SetActionsAndBattlersTurnOrder(void)
     gBattleScripting.battler = 0;
 }
 
-static void TurnValuesCleanUp(bool8 var0)
+static void TurnValuesCleanUp(bool32 endTurn)
 {
     for (enum BattlerId i = 0; i < gBattlersCount; i++)
     {
-        if (var0)
+        if (endTurn)
         {
             gProtectStructs[i].protected = PROTECT_NONE;
             gProtectStructs[i].quash = FALSE;
@@ -4833,6 +4833,21 @@ static bool32 TryDoGimmicksBeforeMoves(void)
     return FALSE;
 }
 
+const u8 *GetChargingSetUpScript(enum BattleMoveEffects moveEffect, bool32 inMiddleOfTurn)
+{
+    switch (moveEffect)
+    {
+    case EFFECT_FOCUS_PUNCH:
+        return inMiddleOfTurn ? BattleScript_FocusPunchSetUpEncored : BattleScript_FocusPunchSetUp;
+    case EFFECT_BEAK_BLAST:
+        return inMiddleOfTurn ? BattleScript_BeakBlastSetUpEncored : BattleScript_BeakBlastSetUp;
+    case EFFECT_SHELL_TRAP:
+        return inMiddleOfTurn ? BattleScript_ShellTrapSetUpEncored : BattleScript_ShellTrapSetUp;
+    default:
+        return NULL;
+    }
+}
+
 static bool32 TryDoMoveEffectsBeforeMoves(void)
 {
     if (!(gHitMarker & HITMARKER_RUN))
@@ -4844,26 +4859,16 @@ static bool32 TryDoMoveEffectsBeforeMoves(void)
         for (u32 i = 0; i < gBattlersCount; i++)
         {
             enum BattlerId battler = battlers[i];
-            if (!gBattleStruct->battlerState[battler].focusPunchBattlers
-                && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-                && !(gBattleMons[battler].volatiles.truantCounter)
-                && !(gProtectStructs[battler].noValidMoves))
+            if (!gBattleStruct->battlerState[battler].focusPunchBattlers)
             {
-                gBattleStruct->battlerState[battler].focusPunchBattlers = TRUE;
                 gBattlerAttacker = battler;
-                switch (GetMoveEffect(gChosenMoveByBattler[gBattlerAttacker]))
+                gBattleScripting.battler = battler;
+                const u8 *script = GetChargingSetUpScript(GetMoveEffect(gChosenMoveByBattler[gBattlerAttacker]), FALSE);
+                if (script)
                 {
-                case EFFECT_FOCUS_PUNCH:
-                    BattleScriptExecute(BattleScript_FocusPunchSetUp);
+                    gBattleStruct->battlerState[battler].focusPunchBattlers = TRUE;
+                    BattleScriptExecute(script);
                     return TRUE;
-                case EFFECT_BEAK_BLAST:
-                    BattleScriptExecute(BattleScript_BeakBlastSetUp);
-                    return TRUE;
-                case EFFECT_SHELL_TRAP:
-                    BattleScriptExecute(BattleScript_ShellTrapSetUp);
-                    return TRUE;
-                default:
-                    break;
                 }
             }
         }
