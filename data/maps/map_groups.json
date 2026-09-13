@@ -1,7 +1,6 @@
 {
   "group_order": [
-    "gMapGroup_Towns",
-    "gMapGroup_Routes",
+    "gMapGroup_TownsAndRoutes",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
     "gMapGroup_IndoorDewford",
@@ -77,14 +76,7 @@
     "gMapGroup_IndoorSixIslandRoute_Frlg",
     "gMapGroup_IndoorSevenIslandRoute_Frlg"
   ],
-  "gMapGroup_Towns": [
-    "LittlerootTown",
-    "OldaleTown",
-    "DewfordTown",
-    "LavaridgeTown",
-    "FallarborTown",
-    "VerdanturfTown",
-    "PacifidlogTown",
+  "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
     "SlateportCity",
     "MauvilleCity",
@@ -93,9 +85,14 @@
     "LilycoveCity",
     "MossdeepCity",
     "SootopolisCity",
-    "EverGrandeCity"
-  ],
-  "gMapGroup_Routes": [
+    "EverGrandeCity",
+    "LittlerootTown",
+    "OldaleTown",
+    "DewfordTown",
+    "LavaridgeTown",
+    "FallarborTown",
+    "VerdanturfTown",
+    "PacifidlogTown",
     "Route101",
     "Route102",
     "Route103",
@@ -143,10 +140,7 @@
     "LittlerootTown_BrendansHouse_2F",
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
-    "LittlerootTown_ProfessorBirchsLab",
-    "InsideOfTruck",
-    "NewBarkTownHouse2",
-    "NewBarkTownHouse1"
+    "LittlerootTown_ProfessorBirchsLab"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
@@ -519,6 +513,7 @@
     "ContestHallCool",
     "ContestHallSmart",
     "ContestHallCute",
+    "InsideOfTruck",
     "SSTidalCorridor",
     "SSTidalLowerDeck",
     "SSTidalRooms",
