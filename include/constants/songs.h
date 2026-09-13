@@ -490,446 +490,71 @@
 #define MUS_RG_TRAINER_TOWER        556 // MUS_RG_T_TOWER
 #define MUS_RG_SLOW_PALLET          557 // MUS_RG_SLOWMASARA
 #define MUS_RG_TEACHY_TV_MENU       558 // MUS_RG_TVNOIZE
-// HGSS Music
-#define MUS_HG_INTRO                  559  // Opening Movie
-#define MUS_HG_TITLE                  560  // Title Screen
-#define MUS_HG_NEW_GAME               561  // An Adventure Begins!
-#define MUS_HG_EVOLUTION              562  // Evolution
-#define MUS_HG_EVOLUTION_NO_INTRO     563  // Evolution (No intro)
-#define MUS_HG_CYCLING                564  // Bicycle
-#define MUS_HG_SURF                   565  // Surf
-#define MUS_HG_HALL_OF_FAME           566  // The Hall of Fame
-#define MUS_HG_CREDITS                567  // Ending Theme
-#define MUS_HG_END                    568  // The End
-#define MUS_HG_NEW_BARK               569  // New Bark Town
-#define MUS_HG_CHERRYGROVE            570  // Cherrygrove City
-#define MUS_HG_VIOLET                 571  // Violet City
-#define MUS_HG_AZALEA                 572  // Azalea Town
-#define MUS_HG_GOLDENROD              573  // Goldenrod City
-#define MUS_HG_ECRUTEAK               574  // Ecruteak City
-#define MUS_HG_CIANWOOD               575  // Cianwood City
-#define MUS_HG_ROUTE29                576  // Route 29
-#define MUS_HG_ROUTE30                577  // Route 30
-#define MUS_HG_ROUTE34                578  // Route 34
-#define MUS_HG_ROUTE38                579  // Route 38
-#define MUS_HG_ROUTE42                580  // Route 42
-#define MUS_HG_VERMILION              581  // Vermilion City
-#define MUS_HG_PEWTER                 582  // Pewter City
-#define MUS_HG_CERULEAN               583  // Cerulean City
-#define MUS_HG_LAVENDER               584  // Lavender Town
-#define MUS_HG_CELADON                585  // Celadon City
-#define MUS_HG_PALLET                 586  // Pallet Town
-#define MUS_HG_CINNABAR               587  // Cinnabar Island
-#define MUS_HG_ROUTE1                 588  // Route 1
-#define MUS_HG_ROUTE3                 589  // Route 3
-#define MUS_HG_ROUTE11                590  // Route 11
-#define MUS_HG_ROUTE24                591  // Route 24
-#define MUS_HG_ROUTE26                592  // Route 26
-#define MUS_HG_POKE_CENTER            593  // Pokémon Center
-#define MUS_HG_POKE_MART              594  // Poké Mart
-#define MUS_HG_GYM                    595  // Pokémon Gym
-#define MUS_HG_ELM_LAB                596  // Elm Pokémon Lab
-#define MUS_HG_OAK                    597  // Professor Oak
-#define MUS_HG_DANCE_THEATER          598  // Ecruteak Dance Theater
-#define MUS_HG_GAME_CORNER            599  // Goldenrod Game Corner
-#define MUS_HG_B_TOWER                600  // Battle Tower (Johto)
-#define MUS_HG_B_TOWER_RECEPTION      601  // Battle Tower Reception Desk
-#define MUS_HG_SPROUT_TOWER           602  // Sprout Tower
-#define MUS_HG_UNION_CAVE             603  // Union Cave
-#define MUS_HG_RUINS_OF_ALPH          604  // Ruins of Alph
-#define MUS_HG_NATIONAL_PARK          605  // National Park
-#define MUS_HG_BURNED_TOWER           606  // Burned Tower
-#define MUS_HG_BELL_TOWER             607  // Bell Tower
-#define MUS_HG_LIGHTHOUSE             608  // Olivine Lighthouse
-#define MUS_HG_TEAM_ROCKET_HQ         609  // Team Rocket HQ
-#define MUS_HG_ICE_PATH               610  // Ice Path
-#define MUS_HG_DRAGONS_DEN            611  // Dragon's Den
-#define MUS_HG_ROCK_TUNNEL            612  // Rock Tunnel
-#define MUS_HG_VIRIDIAN_FOREST        613  // Viridian Forest
-#define MUS_HG_VICTORY_ROAD           614  // Victory Road
-#define MUS_HG_POKEMON_LEAGUE         615  // The Pokémon League
-#define MUS_HG_FOLLOW_ME_1            616  // Hurry Along
-#define MUS_HG_FOLLOW_ME_2            617  // Hurry Along 2
-#define MUS_HG_ENCOUNTER_RIVAL        618  // A Rival Appears!
-#define MUS_HG_RIVAL_EXIT             619  // A Rival Appears! (Version 2)
-#define MUS_HG_BUG_CONTEST_PREP       620  // The Bug-Catching Contest Begins!
-#define MUS_HG_BUG_CATCHING_CONTEST   621  // The Bug-Catching Contest
-#define MUS_HG_RADIO_ROCKET           622  // Radio Transmission
-#define MUS_HG_ROCKET_TAKEOVER        623  // Radio Tower Occupied!
-#define MUS_HG_MAGNET_TRAIN           624  // Magnet Train
-#define MUS_HG_SS_AQUA                625  // S.S. Aqua
-#define MUS_HG_MT_MOON_SQUARE         626  // Mt. Moon
-#define MUS_HG_RADIO_JINGLE           627  // Pokégear Radio: Pokémon Channel
-#define MUS_HG_RADIO_LULLABY          628  // Pokégear Radio: Pokémon Lullaby
-#define MUS_HG_RADIO_MARCH            629  // Pokégear Radio: Pokémon March
-#define MUS_HG_RADIO_UNOWN            630  // Pokégear Radio: Unown
-#define MUS_HG_RADIO_POKE_FLUTE       631  // Pokégear Radio: Poké Flute
-#define MUS_HG_RADIO_OAK              632  // Pokégear Radio: Professor Oak's Pokémon Talk
-#define MUS_HG_RADIO_BUENA            633  // Pokégear Radio: Buena's Password
-#define MUS_HG_EUSINE                 634  // Eusine
-#define MUS_HG_CLAIR                  635  // Clair
-#define MUS_HG_ENCOUNTER_GIRL_1       636  // Trainers' Eyes Meet (Girl 1)
-#define MUS_HG_ENCOUNTER_BOY_1        637  // Trainers' Eyes Meet (Boy 1)
-#define MUS_HG_ENCOUNTER_SUSPICIOUS_1 638  // Trainers' Eyes Meet (Suspicious Figure 1)
-#define MUS_HG_ENCOUNTER_SAGE         639  // Trainers' Eyes Meet (Sage)
-#define MUS_HG_ENCOUNTER_KIMONO_GIRL  640  // Trainers' Eyes Meet (Kimono Girl)
-#define MUS_HG_ENCOUNTER_ROCKET       641  // Trainers' Eyes Meet (Team Rocket)
-#define MUS_HG_ENCOUNTER_GIRL_2       642  // Trainers' Eyes Meet (Girl 2)
-#define MUS_HG_ENCOUNTER_BOY_2        643  // Trainers' Eyes Meet (Boy 2)
-#define MUS_HG_ENCOUNTER_SUSPICIOUS_2 644  // Trainers' Eyes Meet (Suspicious Figure 2)
-#define MUS_HG_VS_WILD                645  // Battle! (Wild Pokémon - Johto Version)
-#define MUS_HG_VS_TRAINER             646  // Battle! (Trainer Battle - Johto Version)
-#define MUS_HG_VS_GYM_LEADER          647  // Battle! (Gym Leader - Johto Version)
-#define MUS_HG_VS_RIVAL               648  // Battle! (Rival)
-#define MUS_HG_VS_ROCKET              649  // Battle! (Team Rocket)
-#define MUS_HG_VS_SUICUNE             650  // Battle! (Suicune)
-#define MUS_HG_VS_ENTEI               651  // Battle! (Entei)
-#define MUS_HG_VS_RAIKOU              652  // Battle! (Raikou)
-#define MUS_HG_VS_CHAMPION            653  // Battle! (Champion)
-#define MUS_HG_VS_WILD_KANTO          654  // Battle! (Wild Pokémon - Kanto Version)
-#define MUS_HG_VS_TRAINER_KANTO       655  // Battle! (Trainer Battle - Kanto Version)
-#define MUS_HG_VS_GYM_LEADER_KANTO    656  // Battle! (Gym Leader - Kanto Version)
-#define MUS_HG_VICTORY_TRAINER        657  // Victory! (Trainer Battle)
-#define MUS_HG_VICTORY_WILD           658  // Victory! (Wild Pokémon)
-#define MUS_HG_CAUGHT                 659  // Victory! (Wild Pokémon) (No intro)
-#define MUS_HG_VICTORY_GYM_LEADER     660  // Victory! (Gym Leader)
-#define MUS_HG_VS_HO_OH               661  // Battle! (Ho-Oh)
-#define MUS_HG_VS_LUGIA               662  // Battle! (Lugia)
-#define MUS_HG_POKEATHLON_LOBBY       663  // Pokéathlon: In the Pokéathlon Dome
-#define MUS_HG_POKEATHLON_START       664  // Pokéathlon: Opening Ceremony
-#define MUS_HG_POKEATHLON_BEFORE      665  // Pokéathlon: An Event Begins!
-#define MUS_HG_POKEATHLON_EVENT       666  // Pokéathlon: Event Time!
-#define MUS_HG_POKEATHLON_FINALS      667  // Pokéathlon: Finals!
-#define MUS_HG_POKEATHLON_RESULTS     668  // Pokéathlon: Results Announcement!
-#define MUS_HG_POKEATHLON_END         669  // Pokéathlon: Medal Ceremony
-#define MUS_HG_POKEATHLON_WINNER      670  // Pokéathlon: Winner!
-#define MUS_HG_B_FACTORY              671  // Battle Factory
-#define MUS_HG_B_HALL                 672  // Battle Hall
-#define MUS_HG_B_ARCADE               673  // Battle Arcade
-#define MUS_HG_B_CASTLE               674  // Battle Castle
-#define MUS_HG_VS_FRONTIER_BRAIN      675  // Battle! (Frontier Brain)
-#define MUS_HG_VICTORY_FRONTIER_BRAIN 676 // Victory! (Frontier Brain)
-#define MUS_HG_WFC                    677  // Nintendo Wi-Fi Connection
-#define MUS_HG_MYSTERY_GIFT           678  // Mystery Gift
-#define MUS_HG_WIFI_PLAZA             679  // Wi-Fi Plaza
-#define MUS_HG_WIFI_MINIGAMES         680  // Wi-Fi Plaza: Plaza Games
-#define MUS_HG_WIFI_PARADE            681  // Wi-Fi Plaza: Parade
-#define MUS_HG_GLOBAL_TERMINAL        682  // Global Terminal
-#define MUS_HG_SPIN_TRADE             683  // Spin Trade
-#define MUS_HG_GTS                    684  // GTS
-#define MUS_HG_ROUTE47                685  // Route 47
-#define MUS_HG_SAFARI_ZONE_GATE       686  // Safari Zone Gate
-#define MUS_HG_SAFARI_ZONE            687  // Safari Zone
-#define MUS_HG_ETHAN                  688  // Ethan
-#define MUS_HG_LYRA                   689  // Lyra
-#define MUS_HG_GAME_CORNER_WIN        690  // You're a Winner!
-#define MUS_HG_KIMONO_GIRL_DANCE      691  // The Dance of Ecruteak
-#define MUS_HG_KIMONO_GIRL            692  // Kimono Girl
-#define MUS_HG_HO_OH_APPEARS          693  // Ho-Oh Appears!
-#define MUS_HG_LUGIA_APPEARS          694  // Lugia Appears!
-#define MUS_HG_SPIKY_EARED_PICHU      695  // Spiky-Eared Pichu Appears!
-#define MUS_HG_SINJOU_RUINS           696  // Sinjoh Ruins
-#define MUS_HG_RADIO_ROUTE101         697  // Pokégear Radio: Route 101
-#define MUS_HG_RADIO_ROUTE201         698  // Pokégear Radio: Route 201
-#define MUS_HG_RADIO_TRAINER          699  // Pokégear Radio: Trainer Channel
-#define MUS_HG_RADIO_VARIETY          700  // Pokégear Radio: Variety Channel
-#define MUS_HG_VS_KYOGRE_GROUDON      701  // Battle! (Super-Ancient Pokémon)
-#define MUS_HG_POKEWALKER             702  // Pokéwalker
-#define MUS_HG_VS_ARCEUS              703  // Arceus
-#define MUS_HG_HEAL                   704  // Pokémon Healed
-#define MUS_HG_LEVEL_UP               705  // Level Up!
-#define MUS_HG_OBTAIN_ITEM            706  // Picked Up an Item!
-#define MUS_HG_OBTAIN_KEY_ITEM        707  // Obtained a Key Item!
-#define MUS_HG_EVOLVED                708  // Congratulations! Your Pokémon Evolved!
-#define MUS_HG_OBTAIN_BADGE           709  // Received a Gym Badge!
-#define MUS_HG_OBTAIN_TMHM            710  // Received a TM!
-#define MUS_HG_OBTAIN_ACCESSORY       711  // Obtained an Accessory
-#define MUS_HG_MOVE_DELETED           712  // Move Deleted
-#define MUS_HG_OBTAIN_BERRY           713  // Obtained a Berry!
-#define MUS_HG_DEX_RATING_1           714  // Pokédex Evaluation... No Good!
-#define MUS_HG_DEX_RATING_2           715  // Pokédex Evaluation... You're on Your Way!
-#define MUS_HG_DEX_RATING_3           716  // Pokédex Evaluation... Keep at It!
-#define MUS_HG_DEX_RATING_4           717  // Pokédex Evaluation... Not Bad!
-#define MUS_HG_DEX_RATING_5           718  // Pokédex Evaluation... Just a Little More!
-#define MUS_HG_DEX_RATING_6           719  // Pokédex Evaluation... Complete!
-#define MUS_HG_OBTAIN_EGG             720  // Received a Pokémon Egg!
-#define MUS_HG_BUG_CONTEST_1ST_PLACE  721  // Bug-Catching Contest: Winner
-#define MUS_HG_BUG_CONTEST_2ND_PLACE  722  // Bug-Catching Contest: Second Place
-#define MUS_HG_BUG_CONTEST_3RD_PLACE  723  // Bug-Catching Contest: Third Place
-#define MUS_HG_CARD_FLIP              724  // Voltorb Flip: Is this what you're expecting?!
-#define MUS_HG_CARD_FLIP_GAME_OVER    725  // Voltorb Flip: Game Over
-#define MUS_HG_POKEGEAR_REGISTERED    726  // Registered in the Pokégear!
-#define MUS_HG_LETS_GO_TOGETHER       727  // Let's Go Together
-#define MUS_HG_POKEATHLON_READY       728  // Pokéathlon: Getting Changed
-#define MUS_HG_POKEATHLON_1ST_PLACE   729  // Pokéathlon: In First Place!
-#define MUS_HG_RECEIVE_POKEMON        730  // Received a Pokémon!
-#define MUS_HG_OBTAIN_ARCADE_POINTS   731  // Received Battle Points in the Battle Arcade!
-#define MUS_HG_OBTAIN_CASTLE_POINTS   732  // Received Castle Points!
-#define MUS_HG_OBTAIN_B_POINTS        733  // Received Battle Points!
-#define MUS_HG_WIN_MINIGAME           734  // Cleared Wobbuffet Pop!
-// DPPt music
-#define MUS_DP_TWINLEAF_DAY         	735	// Twinleaf Town (Day)
-#define MUS_DP_SANDGEM_DAY	            736	// Sandgem Town (Day)
-#define MUS_DP_FLOAROMA_DAY	            737	// Floaroma Town (Day)
-#define MUS_DP_SOLACEON_DAY	            738	// Solaceon Town (Day)
-#define MUS_DP_ROUTE225_DAY	            739	// Route 225 (Day)
-#define MUS_DP_VALOR_LAKEFRONT_DAY	    740	// Valor Lakefront (Day)
-#define MUS_DP_JUBILIFE_DAY	            741	// Jubilife City (Day)
-#define MUS_DP_CANALAVE_DAY	            742	// Canalave City (Day)
-#define MUS_DP_OREBURGH_DAY         	743	// Oreburgh City (Day)
-#define MUS_DP_ETERNA_DAY           	744	// Eterna City (Day)
-#define MUS_DP_HEARTHOME_DAY	        745	// Hearthome City (Day)
-#define MUS_DP_VEILSTONE_DAY        	746	// Veilstone City (Day)
-#define MUS_DP_SUNYSHORE_DAY        	747	// Sunyshore City (Day)
-#define MUS_DP_SNOWPOINT_DAY        	748	// Snowpoint City (Day)
-#define MUS_DP_POKEMON_LEAGUE_DAY   	749	// Pokémon League (Day)
-#define MUS_DP_FIGHT_AREA_DAY	        750	// Fight Area (Day)
-#define MUS_DP_ROUTE201_DAY	            751	// Route 201 (Day)
-#define MUS_DP_ROUTE203_DAY	            752	// Route 203 (Day)
-#define MUS_DP_ROUTE205_DAY	            753	// Route 205 (Day)
-#define MUS_DP_ROUTE206_DAY	            754	// Route 206 (Day)
-#define MUS_DP_ROUTE209_DAY	            755	// Route 209 (Day)
-#define MUS_DP_ROUTE210_DAY	            756	// Route 210 (Day)
-#define MUS_DP_ROUTE216_DAY	            757	// Route 216 (Day)
-#define MUS_DP_ROUTE228_DAY	            758	// Route 228 (Day)
-#define MUS_DP_ROWAN	                759	// Introduction
-#define MUS_DP_TV_BROADCAST	            760	// Special Report "Search for the Red Gyarados!" (Part 1)
-#define MUS_DP_TWINLEAF_NIGHT	        761	// Twinleaf Town (Night)
-#define MUS_DP_SANDGEM_NIGHT	        762	// Sandgem Town (Night)
-#define MUS_DP_FLOAROMA_NIGHT	        763	// Floaroma Town (Night)
-#define MUS_DP_SOLACEON_NIGHT	        764	// Solaceon Town (Night)
-#define MUS_DP_ROUTE225_NIGHT	        765	// Route 225 (Night)
-#define MUS_DP_VALOR_LAKEFRONT_NIGHT	766	// Valor Lakefront (Night)
-#define MUS_DP_JUBILIFE_NIGHT	        767	// Jubilife City (Night)
-#define MUS_DP_CANALAVE_NIGHT	        768	// Canalave City (Night)
-#define MUS_DP_OREBURGH_NIGHT	        769	// Oreburgh City (Night)
-#define MUS_DP_ETERNA_NIGHT	            770	// Eterna City (Night)
-#define MUS_DP_HEARTHOME_NIGHT	        771	// Hearthome City (Night)
-#define MUS_DP_VEILSTONE_NIGHT	        772	// Veilstone City (Night)
-#define MUS_DP_SUNYSHORE_NIGHT	        773	// Sunyshore City (Night)
-#define MUS_DP_SNOWPOINT_NIGHT	        774	// Snowpoint City (Night)
-#define MUS_DP_POKEMON_LEAGUE_NIGHT 	775	// Pokémon League (Night)
-#define MUS_DP_FIGHT_AREA_NIGHT	        776	// Fight Area (Night)
-#define MUS_DP_ROUTE201_NIGHT	        777	// Route 201 (Night)
-#define MUS_DP_ROUTE203_NIGHT	        778	// Route 203 (Night)
-#define MUS_DP_ROUTE205_NIGHT	        779	// Route 205 (Night)
-#define MUS_DP_ROUTE206_NIGHT	        780	// Route 206 (Night)
-#define MUS_DP_ROUTE209_NIGHT	        781	// Route 209 (Night)
-#define MUS_DP_ROUTE210_NIGHT	        782	// Route 210 (Night)
-#define MUS_DP_ROUTE216_NIGHT	        783	// Route 216 (Night)
-#define MUS_DP_ROUTE228_NIGHT	        784	// Route 228 (Night)
-#define MUS_DP_UNDERGROUND	            785	// The Underground
-#define MUS_DP_FLAG_CAPTURED	        786	// Captured a Flag Underground!
-#define MUS_DP_VICTORY_ROAD         	787	// Victory Road
-#define MUS_DP_ETERNA_FOREST        	788	// Eterna Forest
-#define MUS_DP_OLD_CHATEAU	            789	// Old Chateau
-#define MUS_DP_LAKE_CAVERNS	            790	// Lake Caverns
-#define MUS_DP_AMITY_SQUARE	            791	// Amity Square
-#define MUS_DP_GALACTIC_HQ	            792	// Team Galactic HQ
-#define MUS_DP_GALACTIC_ETERNA_BUILDING	793	// Galactic Eterna Building
-#define MUS_DP_GREAT_MARSH	            794	// Great Marsh
-#define MUS_DP_LAKE	                    795	// Lake
-#define MUS_DP_MT_CORONET	            796	// Mt. Coronet
-#define MUS_DP_SPEAR_PILLAR	            797	// Spear Pillar
-#define MUS_DP_STARK_MOUNTAIN	        798	// Stark Mountain
-#define MUS_DP_OREBURGH_GATE	        799	// Oreburgh Gate
-#define MUS_DP_OREBURGH_MINE	        800	// Oreburgh Mine
-#define MUS_DP_INSIDE_POKEMON_LEAGUE	801	// Decisive Battle! (Pokémon League)
-#define MUS_DP_HALL_OF_FAME_ROOM	    802	// Hall of Fame
-#define MUS_DP_POKE_CENTER_DAY	        803	// Pokémon Center (Day)
-#define MUS_DP_POKE_CENTER_NIGHT	    804	// Pokémon Center (Night)
-#define MUS_DP_GYM	                    805	// Pokémon Gym
-#define MUS_DP_ROWAN_LAB	            806	// The Pokémon Lab
-#define MUS_DP_CONTEST_LOBBY        	807	// Contest Hall
-#define MUS_DP_POKE_MART	            808	// Poké Mart
-#define MUS_DP_GAME_CORNER	            809	// Game Corner
-#define MUS_DP_B_TOWER              	810	// Battle Tower
-#define MUS_DP_TV_STATION	            811	// TV Station
-#define MUS_DP_GALACTIC_HQ_BASEMENT	    812	// Deep Within Team Galactic HQ
-#define MUS_DP_AZURE_FLUTE	            813	// Azure Flute
-#define MUS_DP_HALL_OF_ORIGIN	        814	// Hall of Origin
-#define MUS_DP_GTS	                    815	// GTS
-#define MUS_DP_ENCOUNTER_BOY	        816	// Trainers' Eyes Meet (Youngster)
-#define MUS_DP_ENCOUNTER_TWINS	        817	// Trainers' Eyes Meet (Twins)
-#define MUS_DP_ENCOUNTER_INTENSE	    818	// Trainers' Eyes Meet (Black Belt)
-#define MUS_DP_ENCOUNTER_GALACTIC	    819	// Team Galactic Appears!
-#define MUS_DP_ENCOUNTER_LADY	        820	// Trainers' Eyes Meet (Aroma Lady)
-#define MUS_DP_ENCOUNTER_HIKER	        821	// Trainers' Eyes Meet (Hiker)
-#define MUS_DP_ENCOUNTER_RICH	        822	// Trainers' Eyes Meet (PI)
-#define MUS_DP_ENCOUNTER_SAILOR	        823	// Trainers' Eyes Meet (Sailor)
-#define MUS_DP_ENCOUNTER_SUSPICIOUS	    824	// Trainers' Eyes Meet (Collector)
-#define MUS_DP_ENCOUNTER_ACE_TRAINER	825	// Trainers' Eyes Meet (Ace Trainer)
-#define MUS_DP_ENCOUNTER_GIRL	        826	// Trainers' Eyes Meet (Lass)
-#define MUS_DP_ENCOUNTER_CYCLIST	    827	// Trainers' Eyes Meet (Cyclist)
-#define MUS_DP_ENCOUNTER_ARTIST     	828	// Trainers' Eyes Meet (Artist)
-#define MUS_DP_ENCOUNTER_ELITE_FOUR	    829	// The Elite Four Appears!
-#define MUS_DP_ENCOUNTER_CHAMPION	    830	// Champion Cynthia
-#define MUS_DP_VS_WILD	                831	// Battle! (Wild Pokémon)
-#define MUS_DP_VS_GYM_LEADER	        832	// Battle! (Gym Leader)
-#define MUS_DP_VS_UXIE_MESPRIT_AZELF	833	// Battle! (Uxie / Mesprit / Azelf)
-#define MUS_DP_VS_TRAINER	            834	// Battle! (Trainer Battle)
-#define MUS_DP_VS_GALACTIC_BOSS	        835	// Battle! (Team Galactic Boss)
-#define MUS_DP_VS_DIALGA_PALKIA	        836	// Battle! (Dialga / Palkia)
-#define MUS_DP_VS_CHAMPION	            837	// Battle! (Champion)
-#define MUS_DP_VS_GALACTIC	            838	// Battle! (Team Galactic)
-#define MUS_DP_VS_RIVAL	                839	// Battle! (Rival)
-#define MUS_DP_VS_ARCEUS	            840	// Battle! Arceus
-#define MUS_DP_VS_LEGEND	            841	// Battle! (Legendary Pokémon)
-#define MUS_DP_VICTORY_WILD	            842	// Victory! (Wild Pokémon)
-#define MUS_DP_VICTORY_TRAINER	        843	// Victory! (Trainer Battle)
-#define MUS_DP_VICTORY_GYM_LEADER	    844	// Victory! (Gym Leader)
-#define MUS_DP_VICTORY_CHAMPION	        845	// Victory! (Champion)
-#define MUS_DP_VICTORY_GALACTIC	        846	// Victory! (Team Galactic)
-#define MUS_DP_VICTORY_ELITE_FOUR	    847	// Victory (Elite Four)
-#define MUS_DP_VS_GALACTIC_COMMANDER	848	// Battle! (Team Galactic Commander)
-#define MUS_DP_CONTEST	                849	// Super Contest!
-#define MUS_DP_VS_ELITE_FOUR	        850	// Battle! (Elite Four)
-#define MUS_DP_FOLLOW_ME	            851	// Hurry Along
-#define MUS_DP_RIVAL	                852	// Rival
-#define MUS_DP_LAKE_EVENT	            853	// A Surprise at the Lake!
-#define MUS_DP_EVOLUTION	            854	// Evolution
-#define MUS_DP_LUCAS	                855	// Lucas
-#define MUS_DP_DAWN	                    856	// Dawn
-#define MUS_DP_LEGEND_APPEARS	        857	// The Legendary Pokémon Appears!
-#define MUS_DP_CATASTROPHE	            858	// Catastrophe!
-#define MUS_DP_POKE_RADAR	            859	// A Poké Radar Hit!
-#define MUS_DP_SURF	                    860	// Surf
-#define MUS_DP_CYCLING	                861	// Bicycle
-#define MUS_DP_LETS_GO_TOGETHER	        862	// Let's Go Together
-#define MUS_DP_TV_END	                863	// Special Report "Search for the Red Gyarados!" (Part 2)
-#define MUS_DP_LEVEL_UP	                864	// Level Up!
-#define MUS_DP_EVOLVED	                865	// Congratulations! Your Pokémon Evolved!
-#define MUS_DP_OBTAIN_KEY_ITEM	        866	// Obtained a Key Item!
-#define MUS_DP_OBTAIN_ITEM	            867	// Obtained an Item!
-#define MUS_DP_CAUGHT_INTRO	            868	// Fanfare: Pokémon Caught (Unused)
-#define MUS_DP_DEX_RATING	            869	// Pokédex Evaluation (Unused)
-#define MUS_DP_OBTAIN_BADGE	            870	// Obtained a Badge!
-#define MUS_DP_POKETCH	                871	// Obtained a Pokétch App!
-#define MUS_DP_OBTAIN_TMHM	            872	// Obtained a TM!
-#define MUS_DP_OBTAIN_ACCESSORY	        873	// Got an Accessory
-#define MUS_DP_MOVE_DELETED	            874	// Move Deleted
-#define MUS_DP_HEAL	                    875	// Pokémon Healed
-#define MUS_DP_OBTAIN_BERRY	            876	// Obtained a Berry!
-#define MUS_DP_CONTEST_DRESS_UP	        877	// Contest: Dress Up
-#define MUS_DP_HALL_OF_FAME	            878	// Congratulations on Entering the Hall of Fame!
-#define MUS_DP_INTRO	                879	// Opening Movie (Part 1)
-#define MUS_DP_TITLE	                880	// Opening Movie (Part 2)
-#define MUS_DP_MYSTERY_GIFT	            881	// Mystery Gift
-#define MUS_DP_WFC	                    882	// Nintendo Wi-Fi Connection
-#define MUS_DP_DANCE_EASY	            883	// Dance: Easy
-#define MUS_DP_DANCE_DIFFICULT	        884	// Dance: Difficult
-#define MUS_DP_CONTEST_RESULTS	        885	// Contest: Results Announcement
-#define MUS_DP_CONTEST_WINNER	        886	// Contest: Winner
-#define MUS_DP_POFFINS	                887	// Poffins
-#define MUS_DP_SLOTS_WIN	            888	// You're a Winner!
-#define MUS_DP_SLOTS_JACKPOT	        889	// You're a Jackpot Winner!
-#define MUS_DP_CREDITS	                890	// Ending Theme
-#define MUS_DP_SLOTS_UNUSED	            891	// ??
-// Platinum Music		
-#define MUS_PL_FIGHT_AREA_DAY	        892	// Fight Area (Battle Frontier)
-#define MUS_PL_TV_BROADCAST	            893	// Special Program: "Let's Ask Prof. Rowan!" (Part 1)
-#define MUS_PL_TV_END	                894	// Special Program: "Let's Ask Prof. Rowan!" (Part 2)
-#define MUS_PL_INTRO	                895	// Title Screen
-#define MUS_PL_TITLE	                896	// Press Start
-#define MUS_PL_DISTORTION_WORLD	        897	// Distortion World
-#define MUS_PL_B_ARCADE	                898	// Battle Arcade
-#define MUS_PL_B_HALL	                899	// Battle Hall
-#define MUS_PL_B_CASTLE	                900	// Battle Castle
-#define MUS_PL_B_FACTORY	            901	// Battle Factory
-#define MUS_PL_GLOBAL_TERMINAL	        902	// Global Terminal
-#define MUS_PL_LILYCOVE_BOSSA_NOVA	    903	// Villa Audio System: Bossa Nova Lilycove
-#define MUS_PL_LOOKER	                904	// Looker's Theme
-#define MUS_PL_VS_GIRATINA	            905	// Battle! (Giratina)
-#define MUS_PL_VS_FRONTIER_BRAIN	    906	// Battle! (Frontier Brain)
-#define MUS_PL_VICTORY_FRONTIER_BRAIN	907	// Victory! (Frontier Brain)
-#define MUS_PL_VS_REGI	                908	// Battle! (Regirock / Regice / Registeel / Regigigas)
-#define MUS_PL_CONTEST_COOL	            909	// Super Contest: Coolness
-#define MUS_PL_CONTEST_SMART	        910	// Super Contest: Smartness
-#define MUS_PL_CONTEST_CUTE	            911	// Super Contest: Cuteness
-#define MUS_PL_CONTEST_TOUGH	        912	// Super Contest: Toughness
-#define MUS_PL_CONTEST_BEAUTY	        913	// Super Contest: Beauty
-#define MUS_PL_SPIN_TRADE	            914	// Spin Trade
-#define MUS_PL_WIFI_MINIGAMES	        915	// Wi-Fi Plaza: Mini-Games
-#define MUS_PL_WIFI_PLAZA	            916	// Wi-Fi Plaza
-#define MUS_PL_WIFI_PARADE	            917	// Wi-Fi Plaza: Parade
-#define MUS_PL_GIRATINA_APPEARS_1	    918	// Giratina Appears!
-#define MUS_PL_GIRATINA_APPEARS_2	    919	// Giratina Appears! Part 2
-#define MUS_PL_MYSTERY_GIFT	            920	// Mystery Gift
-#define MUS_PL_TWINLEAF_MUSIC_BOX	    921	// Villa Music Box: Twinleaf Tune
-#define MUS_PL_OBTAIN_ARCADE_POINTS	    922	// Received BP in the Battle Arcade!
-#define MUS_PL_OBTAIN_CASTLE_POINTS	    923	// Received Castle Points!
-#define MUS_PL_OBTAIN_B_POINTS	        924	// Received Battle Points!
-#define MUS_PL_WIN_MINIGAME	            925	// Cleared Wobbuffet Pop!
 
-#define END_MUS                         925
+#define END_MUS                     558
 
-// Phoneme sounds used by the "bard" NPC (see src/bard_music.c and src/mauville_old_man.c).
-// Each comes in a triplet of PH_*_BLEND, PH_*_HELD, and PH_*_SOLO.
-#define FIRST_PHONEME_SONG           (END_MUS + 1)
-#define PH_TRAP_BLEND                (FIRST_PHONEME_SONG + 0)
-#define PH_TRAP_HELD                 (FIRST_PHONEME_SONG + 1)
-#define PH_TRAP_SOLO                 (FIRST_PHONEME_SONG + 2)
-#define PH_FACE_BLEND                (FIRST_PHONEME_SONG + 3)
-#define PH_FACE_HELD                 (FIRST_PHONEME_SONG + 4)
-#define PH_FACE_SOLO                 (FIRST_PHONEME_SONG + 5)
-#define PH_CLOTH_BLEND               (FIRST_PHONEME_SONG + 6)
-#define PH_CLOTH_HELD                (FIRST_PHONEME_SONG + 7)
-#define PH_CLOTH_SOLO                (FIRST_PHONEME_SONG + 8)
-#define PH_DRESS_BLEND               (FIRST_PHONEME_SONG + 9)
-#define PH_DRESS_HELD                (FIRST_PHONEME_SONG + 10)
-#define PH_DRESS_SOLO                (FIRST_PHONEME_SONG + 11)
-#define PH_FLEECE_BLEND              (FIRST_PHONEME_SONG + 12)
-#define PH_FLEECE_HELD               (FIRST_PHONEME_SONG + 13)
-#define PH_FLEECE_SOLO               (FIRST_PHONEME_SONG + 14)
-#define PH_KIT_BLEND                 (FIRST_PHONEME_SONG + 15)
-#define PH_KIT_HELD                  (FIRST_PHONEME_SONG + 16)
-#define PH_KIT_SOLO                  (FIRST_PHONEME_SONG + 17)
-#define PH_PRICE_BLEND               (FIRST_PHONEME_SONG + 18)
-#define PH_PRICE_HELD                (FIRST_PHONEME_SONG + 19)
-#define PH_PRICE_SOLO                (FIRST_PHONEME_SONG + 20)
-#define PH_LOT_BLEND                 (FIRST_PHONEME_SONG + 21)
-#define PH_LOT_HELD                  (FIRST_PHONEME_SONG + 22)
-#define PH_LOT_SOLO                  (FIRST_PHONEME_SONG + 23)
-#define PH_GOAT_BLEND                (FIRST_PHONEME_SONG + 24)
-#define PH_GOAT_HELD                 (FIRST_PHONEME_SONG + 25)
-#define PH_GOAT_SOLO                 (FIRST_PHONEME_SONG + 26)
-#define PH_THOUGHT_BLEND             (FIRST_PHONEME_SONG + 27)
-#define PH_THOUGHT_HELD              (FIRST_PHONEME_SONG + 28)
-#define PH_THOUGHT_SOLO              (FIRST_PHONEME_SONG + 29)
-#define PH_CHOICE_BLEND              (FIRST_PHONEME_SONG + 30)
-#define PH_CHOICE_HELD               (FIRST_PHONEME_SONG + 31)
-#define PH_CHOICE_SOLO               (FIRST_PHONEME_SONG + 32)
-#define PH_MOUTH_BLEND               (FIRST_PHONEME_SONG + 33)
-#define PH_MOUTH_HELD                (FIRST_PHONEME_SONG + 34)
-#define PH_MOUTH_SOLO                (FIRST_PHONEME_SONG + 35)
-#define PH_FOOT_BLEND                (FIRST_PHONEME_SONG + 36)
-#define PH_FOOT_HELD                 (FIRST_PHONEME_SONG + 37)
-#define PH_FOOT_SOLO                 (FIRST_PHONEME_SONG + 38)
-#define PH_GOOSE_BLEND               (FIRST_PHONEME_SONG + 39)
-#define PH_GOOSE_HELD                (FIRST_PHONEME_SONG + 40)
-#define PH_GOOSE_SOLO                (FIRST_PHONEME_SONG + 41)
-#define PH_STRUT_BLEND               (FIRST_PHONEME_SONG + 42)
-#define PH_STRUT_HELD                (FIRST_PHONEME_SONG + 43)
-#define PH_STRUT_SOLO                (FIRST_PHONEME_SONG + 44)
-#define PH_CURE_BLEND                (FIRST_PHONEME_SONG + 45)
-#define PH_CURE_HELD                 (FIRST_PHONEME_SONG + 46)
-#define PH_CURE_SOLO                 (FIRST_PHONEME_SONG + 47)
-#define PH_NURSE_BLEND               (FIRST_PHONEME_SONG + 48)
-#define PH_NURSE_HELD                (FIRST_PHONEME_SONG + 49)
-#define PH_NURSE_SOLO                (FIRST_PHONEME_SONG + 50)
-#define LAST_PHONEME_SONG            PH_NURSE_SOLO
-#define NUM_PHONEME_SONGS            (LAST_PHONEME_SONG - FIRST_PHONEME_SONG + 1)
-#define PHONEME_ID(song)             ((song) - FIRST_PHONEME_SONG)
-#define PHONEME_ID_NONE              0xFF
+// These PH_* constants are phoneme sounds used by the "bard" NPC (see src/bard_music.c and src/mauville_old_man.c).
+// Each comes in a triplet of PH_*_BLEND, PH_*_HELD, and PH_*_SOLO, and the name of each triplet incorporates the English phonetic sound it represents.
+#define PH_TRAP_BLEND               559
+#define PH_TRAP_HELD                560
+#define PH_TRAP_SOLO                561
+#define PH_FACE_BLEND               562
+#define PH_FACE_HELD                563
+#define PH_FACE_SOLO                564
+#define PH_CLOTH_BLEND              565
+#define PH_CLOTH_HELD               566
+#define PH_CLOTH_SOLO               567
+#define PH_DRESS_BLEND              568
+#define PH_DRESS_HELD               569
+#define PH_DRESS_SOLO               570
+#define PH_FLEECE_BLEND             571
+#define PH_FLEECE_HELD              572
+#define PH_FLEECE_SOLO              573
+#define PH_KIT_BLEND                574
+#define PH_KIT_HELD                 575
+#define PH_KIT_SOLO                 576
+#define PH_PRICE_BLEND              577
+#define PH_PRICE_HELD               578
+#define PH_PRICE_SOLO               579
+#define PH_LOT_BLEND                580
+#define PH_LOT_HELD                 581
+#define PH_LOT_SOLO                 582
+#define PH_GOAT_BLEND               583
+#define PH_GOAT_HELD                584
+#define PH_GOAT_SOLO                585
+#define PH_THOUGHT_BLEND            586
+#define PH_THOUGHT_HELD             587
+#define PH_THOUGHT_SOLO             588
+#define PH_CHOICE_BLEND             589
+#define PH_CHOICE_HELD              590
+#define PH_CHOICE_SOLO              591
+#define PH_MOUTH_BLEND              592
+#define PH_MOUTH_HELD               593
+#define PH_MOUTH_SOLO               594
+#define PH_FOOT_BLEND               595
+#define PH_FOOT_HELD                596
+#define PH_FOOT_SOLO                597
+#define PH_GOOSE_BLEND              598
+#define PH_GOOSE_HELD               599
+#define PH_GOOSE_SOLO               600
+#define PH_STRUT_BLEND              601
+#define PH_STRUT_HELD               602
+#define PH_STRUT_SOLO               603
+#define PH_CURE_BLEND               604
+#define PH_CURE_HELD                605
+#define PH_CURE_SOLO                606
+#define PH_NURSE_BLEND              607
+#define PH_NURSE_HELD               608
+#define PH_NURSE_SOLO               609
 
-// Plays the exact same track as SE_M_MORNING_SUN, but under its own song ID.
-// The GBS table is keyed by song ID, so mapping SE_M_MORNING_SUN itself would also
-// change the Morning Sun *move* sound in battle. Giving the Pokemon Center's
-// "Even Faster Joy" heal its own ID lets it carry a GBS mapping in isolation.
-// Keep this last: gSongTable is indexed by song ID, so new IDs must be appended.
-#define SE_FASTER_JOY_HEAL           (LAST_PHONEME_SONG + 1)
+#define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
-#define MUS_ROUTE118                 0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
-#define MUS_NONE                     0xFFFF
+#define MUS_NONE                    0xFFFF
+
+#define FIRST_PHONEME_SONG          PH_TRAP_BLEND
+#define LAST_PHONEME_SONG           PH_NURSE_SOLO
+#define NUM_PHONEME_SONGS           (LAST_PHONEME_SONG - FIRST_PHONEME_SONG + 1)
+#define PHONEME_ID(song)            ((song) - FIRST_PHONEME_SONG)
+#define PHONEME_ID_NONE             0xFF
 
 #endif  // GUARD_CONSTANTS_SONGS_H
