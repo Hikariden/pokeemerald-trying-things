@@ -45,11 +45,11 @@
 static u32 BattlerHPPercentage(enum BattlerId battler, enum ComparisonOperators operation, u32 threshold);
 static u32 GetPartyMonCount(u32 lastId, struct Pokemon *party, bool32 onlyAlive);
 static bool32 DoesTrainerHaveSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 slideId);
-static bool32 ShouldRunTrainerSlideFirstCriticalHit(enum BattlerId battler, enum TrainerSlideType slideId);
-static bool32 ShouldRunTrainerSlideFirstSuperEffectiveHit(enum BattlerId battler, enum TrainerSlideType slideId);
-static bool32 ShouldRunTrainerSlideFirstSTABMove(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
-static bool32 ShouldRunTrainerSlideFirstFainted(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
-static bool32 ShouldRunTrainerSlideFirstIneffectiveMove(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlideLandsFirstCriticalHit(enum BattlerId battler, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlideLandsFirstSuperEffectiveHit(enum BattlerId battler, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlideLandsFirstSTABMove(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlideLandsFirstDown(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
+static bool32 ShouldRunTrainerSlideMonUnaffected(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
 static bool32 ShouldRunTrainerSlideLastSwitchIn(enum BattlerId battler, enum TrainerSlideType slideId);
 static bool32 ShouldRunTrainerSlideLastHalfHP(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
 static bool32 ShouldRunTrainerSlideLastLowHp(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId);
@@ -168,12 +168,12 @@ void SetTrainerSlideMessage(enum DifficultyLevel difficulty, u32 trainerId, u32 
         gBattleStruct->trainerSlideMsg = trainerSlidesNormal[slideId];
 }
 
-static bool32 ShouldRunTrainerSlideFirstCriticalHit(enum BattlerId battler, enum TrainerSlideType slideId)
+static bool32 ShouldRunTrainerSlideLandsFirstCriticalHit(enum BattlerId battler, enum TrainerSlideType slideId)
 {
     return IsTrainerSlideInitialized(battler, slideId);
 }
 
-static bool32 ShouldRunTrainerSlideFirstSuperEffectiveHit(enum BattlerId battler, enum TrainerSlideType slideId)
+static bool32 ShouldRunTrainerSlideLandsFirstSuperEffectiveHit(enum BattlerId battler, enum TrainerSlideType slideId)
 {
     if (slideId == TRAINER_SLIDE_DEFENDER_TAKES_FIRST_SUPER_EFFECTIVE_HIT)
     {
@@ -195,7 +195,7 @@ static bool32 ShouldRunTrainerSlideFirstSuperEffectiveHit(enum BattlerId battler
     return TRUE;
 }
 
-static bool32 ShouldRunTrainerSlideFirstSTABMove(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
+static bool32 ShouldRunTrainerSlideLandsFirstSTABMove(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
 {
     if (!IsTrainerSlideInitialized(battler, slideId))
         return FALSE;
@@ -206,20 +206,20 @@ static bool32 ShouldRunTrainerSlideFirstSTABMove(u32 lastId, enum BattlerId batt
     return TRUE;
 }
 
-static bool32 ShouldRunTrainerSlideFirstFainted(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
+static bool32 ShouldRunTrainerSlideLandsFirstDown(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
 {
     if (gBattlerFainted == GetPartnerBattler(battler))
         return FALSE;
 
     enum BattlerId partyBattler = battler;
 
-    if (slideId == TRAINER_SLIDE_ATTACKER_FAINTS_FIRST_MON)
+    if (slideId == TRAINER_SLIDE_ATTACKER_LANDS_FIRST_DOWN)
         partyBattler = gBattlerFainted;
 
     return ((GetPartyMonCount(lastId, GetBattlerParty(partyBattler), TRUE) == (GetPartyMonCount(lastId, GetBattlerParty(partyBattler), FALSE) - 1)));
 }
 
-static bool32 ShouldRunTrainerSlideFirstIneffectiveMove(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
+static bool32 ShouldRunTrainerSlideMonUnaffected(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
 {
     if (!IsTrainerSlideInitialized(battler, slideId))
         return FALSE;
@@ -232,11 +232,11 @@ static bool32 ShouldRunTrainerSlideLastSwitchIn(enum BattlerId battler, enum Tra
     if (slideId == TRAINER_SLIDE_OPPONENT_LAST_SWITCHIN)
     {
         enum BattlerId oppositeBattler = GetOppositeBattler(battler);
-        enum BattlerId oppositePartner = GetPartnerBattler(oppositeBattler);
+        enum BattlerId oppositePartner = IsDoubleBattle() ? GetPartnerBattler(oppositeBattler) : oppositeBattler;
 
         return (CountUsablePartyMons(oppositeBattler) == 0 && CountUsablePartyMons(oppositePartner) == 0);
     }
-    return !HasBattlerViablePartyMonsForSwitch(battler);
+    return !CanBattlerSwitch(battler);
 }
 
 static bool32 ShouldRunTrainerSlideLastHalfHP(u32 lastId, enum BattlerId battler, enum TrainerSlideType slideId)
@@ -368,23 +368,23 @@ enum TrainerSlideTargets ShouldDoTrainerSlide(enum BattlerId battler, enum Train
     {
         case TRAINER_SLIDE_DEFENDER_TAKES_FIRST_CRITICAL_HIT:
         case TRAINER_SLIDE_ATTACKER_LANDS_FIRST_CRITICAL_HIT:
-            shouldRun = ShouldRunTrainerSlideFirstCriticalHit(battler, slideId);
+            shouldRun = ShouldRunTrainerSlideLandsFirstCriticalHit(battler, slideId);
             break;
         case TRAINER_SLIDE_DEFENDER_TAKES_FIRST_SUPER_EFFECTIVE_HIT:
         case TRAINER_SLIDE_ATTACKER_LANDS_FIRST_SUPER_EFFECTIVE_HIT:
-            shouldRun = ShouldRunTrainerSlideFirstSuperEffectiveHit(battler, slideId);
+            shouldRun = ShouldRunTrainerSlideLandsFirstSuperEffectiveHit(battler, slideId);
             break;
         case TRAINER_SLIDE_DEFENDER_TAKES_FIRST_STAB_MOVE:
         case TRAINER_SLIDE_ATTACKER_LANDS_FIRST_STAB_MOVE:
-            shouldRun = ShouldRunTrainerSlideFirstSTABMove(lastId, battler, slideId);
+            shouldRun = ShouldRunTrainerSlideLandsFirstSTABMove(lastId, battler, slideId);
             break;
-        case TRAINER_SLIDE_DEFENDER_LOSES_FIRST_MON:
-        case TRAINER_SLIDE_ATTACKER_FAINTS_FIRST_MON:
-            shouldRun = ShouldRunTrainerSlideFirstFainted(lastId, battler, slideId);
+        case TRAINER_SLIDE_DEFENDER_TAKES_FIRST_DOWN:
+        case TRAINER_SLIDE_ATTACKER_LANDS_FIRST_DOWN:
+            shouldRun = ShouldRunTrainerSlideLandsFirstDown(lastId, battler, slideId);
             break;
-        case TRAINER_SLIDE_ATTACKER_LANDS_FIRST_INEFFECTIVE:
-        case TRAINER_SLIDE_DEFENDER_TAKES_FIRST_INEFFECTIVE:
-            shouldRun = ShouldRunTrainerSlideFirstIneffectiveMove(lastId, battler, slideId);
+        case TRAINER_SLIDE_OPPONENT_MON_UNAFFECTED:
+        case TRAINER_SLIDE_SELF_MON_UNAFFECTED:
+            shouldRun = ShouldRunTrainerSlideMonUnaffected(lastId, battler, slideId);
             break;
         case TRAINER_SLIDE_OPPONENT_LAST_SWITCHIN:
         case TRAINER_SLIDE_SELF_LAST_SWITCHIN:
@@ -399,10 +399,10 @@ enum TrainerSlideTargets ShouldDoTrainerSlide(enum BattlerId battler, enum Train
             shouldRun = ShouldRunTrainerSlideLastLowHp(lastId, battler, slideId);
             break;
         case TRAINER_SLIDE_BEFORE_FIRST_TURN:
-        case TRAINER_SLIDE_SELF_MEGA_EVOLUTION:
-        case TRAINER_SLIDE_SELF_Z_MOVE:
-        case TRAINER_SLIDE_SELF_DYNAMAX:
-        case TRAINER_SLIDE_SELF_TERA:
+        case TRAINER_SLIDE_ATTACKER_MEGA_EVOLUTION:
+        case TRAINER_SLIDE_ATTACKER_Z_MOVE:
+        case TRAINER_SLIDE_ATTACKER_DYNAMAX:
+        case TRAINER_SLIDE_ATTACKER_TERA:
         case TRAINER_SLIDE_OPPONENT_MEGA_EVOLUTION:
         case TRAINER_SLIDE_OPPONENT_Z_MOVE:
         case TRAINER_SLIDE_OPPONENT_DYNAMAX:
@@ -530,9 +530,9 @@ void TryInitializeTrainerSlideLandsFirstSuperEffectiveHit(enum BattlerId battler
     InitalizeTrainerSlide(slideBattler, slideId);
 }
 
-void TryInitializeTrainerSlideFirstIneffectiveMove(enum BattlerId battlerDef, enum BattlerId battlerAtk)
+void TryInitializeTrainerSlideMonUnaffected(enum BattlerId battlerDef, enum BattlerId battlerAtk)
 {
-    enum TrainerSlideType slideId = TRAINER_SLIDE_ATTACKER_LANDS_FIRST_INEFFECTIVE;
+    enum TrainerSlideType slideId = TRAINER_SLIDE_OPPONENT_MON_UNAFFECTED;
     enum BattlerId slideBattler = battlerAtk;
     bool32 skip = FALSE;
 
@@ -545,7 +545,7 @@ void TryInitializeTrainerSlideFirstIneffectiveMove(enum BattlerId battlerDef, en
     if (!skip)
         InitalizeTrainerSlide(slideBattler, slideId);
 
-    slideId = TRAINER_SLIDE_DEFENDER_TAKES_FIRST_INEFFECTIVE;
+    slideId = TRAINER_SLIDE_SELF_MON_UNAFFECTED;
     slideBattler = battlerDef;
 
     if (IsSlideInitalizedOrPlayed(slideBattler, slideId))

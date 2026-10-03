@@ -20,7 +20,6 @@ SINGLE_BATTLE_TEST("Booster Energy will activate Quark Drive after Electric Terr
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_ELECTRIC_SURGE);
         NONE_OF {
-            ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
             MESSAGE("Iron Moth used its Booster Energy to activate Quark Drive!");
             MESSAGE("Iron Moth's Sp. Atk was heightened!");
@@ -29,7 +28,6 @@ SINGLE_BATTLE_TEST("Booster Energy will activate Quark Drive after Electric Terr
         MESSAGE("The Electric Terrain activated Iron Moth's Quark Drive!");
         MESSAGE("Iron Moth's Sp. Atk was heightened!");
         MESSAGE("The electricity disappeared from the battlefield.");
-        ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
         MESSAGE("Iron Moth used its Booster Energy to activate Quark Drive!");
@@ -52,7 +50,6 @@ SINGLE_BATTLE_TEST("Booster Energy will activate Protosynthesis after harsh sunl
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_DROUGHT);
         NONE_OF {
-            ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
             MESSAGE("Raging Bolt used its Booster Energy to activate Protosynthesis!");
             MESSAGE("Raging Bolt's Sp. Atk was heightened!");
@@ -61,7 +58,6 @@ SINGLE_BATTLE_TEST("Booster Energy will activate Protosynthesis after harsh sunl
         MESSAGE("The harsh sunlight activated Raging Bolt's Protosynthesis!");
         MESSAGE("Raging Bolt's Sp. Atk was heightened!");
         MESSAGE("The sunlight faded.");
-        ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
         MESSAGE("Raging Bolt used its Booster Energy to activate Protosynthesis!");
@@ -82,7 +78,6 @@ SINGLE_BATTLE_TEST("Booster Energy's Protosynthesis boost is preserved when weat
         TURN {}
         TURN {}
     } SCENE {
-        ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Raging Bolt used its Booster Energy to activate Protosynthesis!");
         MESSAGE("Raging Bolt's Attack was heightened!");
@@ -109,7 +104,6 @@ SINGLE_BATTLE_TEST("Booster Energy activates Protosynthesis and increases highes
     } WHEN {
         TURN {}
     } SCENE {
-        ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
         MESSAGE("Raging Bolt used its Booster Energy to activate Protosynthesis!");
@@ -144,7 +138,6 @@ SINGLE_BATTLE_TEST("Booster Energy activates Quark Drive and increases highest s
     } WHEN {
         TURN {}
     } SCENE {
-        ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         if (attack == 110)
             MESSAGE("Iron Moth's Attack was heightened!");
@@ -174,7 +167,6 @@ SINGLE_BATTLE_TEST("Booster Energy's Quark Drive boost is preserved when terrain
         TURN {}
         TURN {}
     } SCENE {
-        ITEM_POPUP(player, ITEM_BOOSTER_ENERGY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Iron Moth used its Booster Energy to activate Quark Drive!");
         MESSAGE("Iron Moth's Attack was heightened!");

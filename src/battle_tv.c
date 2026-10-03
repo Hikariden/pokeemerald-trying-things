@@ -17,7 +17,7 @@ static bool8 IsNotSpecialBattleString(enum StringID stringId);
 static void AddMovePoints(u8 caseId, u16 arg1, u8 arg2, u8 arg3);
 static void TrySetBattleSeminarShow(void);
 static void AddPointsOnFainting(void);
-static void AddPointsBasedOnWeather(u16 weatherFlags, enum Move move, enum MoveSlot moveSlot);
+static void AddPointsBasedOnWeather(u16 weatherFlags, enum Move move, u8 moveSlot);
 static bool8 ShouldCalculateDamage(enum Move move, s32 *dmg, u16 *powerOverride);
 static u32 GetTvPartyIndex(u32 battler);
 
@@ -1314,6 +1314,8 @@ static void TrySetBattleSeminarShow(void)
             ctx.updateFlags = FALSE;
             ctx.isSelfInflicted = FALSE;
             ctx.fixedBasePower = powerOverride;
+            ctx.weather = GetWeather();
+            ctx.terrain = gFieldTimers.terrain;
             ctx.abilities[gBattlerAttacker] = GetBattlerAbility(gBattlerAttacker);
             ctx.abilities[gBattlerTarget] = GetBattlerAbility(gBattlerTarget);
             ctx.holdEffects[gBattlerAttacker] = GetBattlerHoldEffect(gBattlerAttacker);
@@ -1434,7 +1436,7 @@ u8 GetBattlerMoveSlotId(enum BattlerId battler, enum Move move)
     return i;
 }
 
-static void AddPointsBasedOnWeather(u16 weatherFlags, enum Move move, enum MoveSlot moveSlot)
+static void AddPointsBasedOnWeather(u16 weatherFlags, enum Move move, u8 moveSlot)
 {
     if (weatherFlags & B_WEATHER_RAIN)
         AddMovePoints(PTS_RAIN, move, moveSlot, 0);
@@ -1448,7 +1450,7 @@ static void AddPointsBasedOnWeather(u16 weatherFlags, enum Move move, enum MoveS
 
 static u32 GetTvPartyIndex(u32 battler)
 {
-    u32 index = (u32)gBattlerPartyIndexes[battler];
+    u32 index = gBattlerPartyIndexes[battler];
     if ((gBattleTypeFlags & BATTLE_TYPE_MULTI) && (GetBattlerPosition(battler) & BIT_FLANK))
         index += MULTI_PARTY_SIZE;
     return index;

@@ -689,11 +689,6 @@ static void Cmd_unloadallspritepals(void)
     UnloadAllSpritePalettes();
 }
 
-static bool32 IsBattlerAliveAndPresent(enum BattlerId battler)
-{
-    return IsBattlerAlive(battler) && IsBattlerSpritePresent(battler);
-}
-
 static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, enum BattlerId *targets)
 {
     u8 numTargets = 0;
@@ -726,7 +721,7 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, enum BattlerId *targets)
         {
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (i != gBattleAnimAttacker && IsBattlerAliveAndPresent(i))
+                if (i != gBattleAnimAttacker && IS_ALIVE_AND_PRESENT(i))
                     targets[numTargets++] = i + MAX_BATTLERS_COUNT; // anim ids for battler ids
             }
         }
@@ -734,7 +729,7 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, enum BattlerId *targets)
     case TARGET_BOTH: // all opponents
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (i != ignoredTgt && !IsBattlerAlly(i, ignoredTgt) && IsBattlerAliveAndPresent(i))
+            if (i != ignoredTgt && !IsBattlerAlly(i, ignoredTgt) && IS_ALIVE_AND_PRESENT(i))
                 targets[numTargets++] = i + MAX_BATTLERS_COUNT;
         }
         break;

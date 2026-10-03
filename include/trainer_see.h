@@ -23,7 +23,6 @@ void SetBuriedTrainerMovement(struct ObjectEvent *objEvent);
 void DoTrainerApproach(void);
 void TryPrepareSecondApproachingTrainer(void);
 void PrepareSecondApproachingTrainer(void);
-bool32 IsNormalTypeTrainer(u32 trainerType);
 
 u8 FldEff_ExclamationMarkIcon(void);
 u8 FldEff_QuestionMarkIcon(void);

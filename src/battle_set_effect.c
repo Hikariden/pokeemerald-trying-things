@@ -183,12 +183,22 @@ static void HandleSetEffectPayday(struct BattleCalcValues *cv, struct SetEffect 
     if (IsOnPlayerSide(cv->battlerAtk))
     {
         u16 payday = gPaydayMoney;
+        enum MoveTarget moveTarget = GetBattlerMoveTargetType(cv->battlerAtk, cv->move);
         gPaydayMoney += (gBattleMons[cv->battlerAtk].level * 5);
         if (payday > gPaydayMoney)
             gPaydayMoney = 0xFFFF;
 
-        BattleScriptPush(se->script);
-        gBattlescriptCurrInstr = BattleScript_MoveEffectPayDay;
+        // For a move that hits multiple targets (i.e. Make it Rain)
+        // we only want to print the message on the final hit
+        if (!(NumAffectedSpreadMoveTargets() > 1 && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT))
+        {
+            BattleScriptPush(se->script);
+            gBattlescriptCurrInstr = BattleScript_MoveEffectPayDay;
+        }
+        else
+        {
+            gBattlescriptCurrInstr = se->script;
+        }
     }
     else
     {
@@ -310,14 +320,14 @@ static void HandleSetEffectRemoveStatus(struct BattleCalcValues *cv, struct SetE
         switch (argStatus)
         {
         case STATUS1_PARALYSIS:
-            gBattlescriptCurrInstr = BattleScript_BattlerParalyzeHeal;
+            gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
             break;
         case STATUS1_SLEEP:
             TryDeactivateSleepClause(se->effectBattler, gBattlerPartyIndexes[se->effectBattler]);
-            gBattlescriptCurrInstr = BattleScript_BattlerWokeUp;
+            gBattlescriptCurrInstr = BattleScript_TargetWokeUp;
             break;
         case STATUS1_BURN:
-            gBattlescriptCurrInstr = BattleScript_BattlerBurnHeal;
+            gBattlescriptCurrInstr = BattleScript_TargetBurnHeal;
             break;
         case STATUS1_FREEZE:
             gBattlescriptCurrInstr = BattleScript_BattlerDefrosted;
@@ -328,7 +338,7 @@ static void HandleSetEffectRemoveStatus(struct BattleCalcValues *cv, struct SetE
         case STATUS1_POISON:
         case STATUS1_TOXIC_POISON:
         case STATUS1_PSN_ANY:
-            gBattlescriptCurrInstr = BattleScript_BattlerPoisonHealed;
+            gBattlescriptCurrInstr = BattleScript_TargetPoisonHealed;
             break;
         }
     }
@@ -439,7 +449,7 @@ static void HandleSetEffectThroatChop(struct BattleCalcValues *cv, struct SetEff
 
 static void HandleSetEffectIncinerate(struct BattleCalcValues *cv, struct SetEffect *se)
 {
-    if (cv->abilities[se->effectBattler] == ABILITY_STICKY_HOLD || gSpecialStatuses[se->effectBattler].berryReduced)
+    if (cv->abilities[se->effectBattler] == ABILITY_STICKY_HOLD)
         return;
 
     if (gItemsInfo[gBattleMons[se->effectBattler].item].pocket == POCKET_BERRIES
@@ -1226,6 +1236,7 @@ static void HandleSetEffectBreakScreen(struct BattleCalcValues *cv, struct SetEf
 
         if (!failed)
         {
+            gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             if (gSideTimers[side].reflectTimer)
                 gBattleCommunication[MULTISTRING_CHOOSER] |= 1 << 0;
             if (gSideTimers[side].lightscreenTimer)
@@ -1233,6 +1244,9 @@ static void HandleSetEffectBreakScreen(struct BattleCalcValues *cv, struct SetEf
             if (gSideTimers[side].auroraVeilTimer)
                 gBattleCommunication[MULTISTRING_CHOOSER] |= 1 << 2;
 
+            gSideTimers[side].reflectTimer = 0;
+            gSideTimers[side].lightscreenTimer = 0;
+            gSideTimers[side].auroraVeilTimer = 0;
             gSideStatuses[side] &= ~SIDE_STATUS_SCREEN_ANY;
             gBattleScripting.animTurn = 1;
             gBattleScripting.animTargetsHit = 1;

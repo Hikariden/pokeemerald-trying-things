@@ -23,7 +23,6 @@ DOUBLE_BATTLE_TEST("Throat Spray activates after both hits of a spread move")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
         HP_BAR(opponentLeft, captureDamage: &firstHit);
         HP_BAR(opponentRight, captureDamage: &secondHit);
-        ITEM_POPUP(playerLeft, ITEM_THROAT_SPRAY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
     } THEN {
         EXPECT_EQ(firstHit, secondHit);
@@ -45,7 +44,6 @@ DOUBLE_BATTLE_TEST("Throat Spray activates after both hits of a spread move, eve
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BOOMBURST, playerLeft);
         HP_BAR(opponentLeft);
         HP_BAR(playerRight);
-        ITEM_POPUP(playerLeft, ITEM_THROAT_SPRAY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
     }
 }
@@ -64,7 +62,6 @@ DOUBLE_BATTLE_TEST("Throat Spray does not activate if both foes take no damage f
     } SCENE {
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
-            ITEM_POPUP(playerLeft, ITEM_THROAT_SPRAY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
 	}
     }
@@ -85,7 +82,6 @@ SINGLE_BATTLE_TEST("Throat Spray increases Sp. Atk by one stage")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, player);
         HP_BAR(opponent, captureDamage: &normalHit);
-        ITEM_POPUP(player, ITEM_THROAT_SPRAY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, player);
         HP_BAR(opponent, captureDamage: &boostedHit);
@@ -112,19 +108,12 @@ SINGLE_BATTLE_TEST("Throat Spray activates when a sound move is used")
         TURN { MOVE(player, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
-        switch (move)
-        {
-            case MOVE_HOWL:
-            case MOVE_ECHOED_VOICE:
-                ITEM_POPUP(player, ITEM_THROAT_SPRAY);
-                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-                break;
-            default:
-                NONE_OF {
-                    ITEM_POPUP(player, ITEM_THROAT_SPRAY);
-                    ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-                }
-        }
+        if (move == MOVE_HOWL)
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        else if (move == MOVE_ECHOED_VOICE)
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        else
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
     }
 }
 
@@ -145,7 +134,6 @@ SINGLE_BATTLE_TEST("Throat Spray does not activate if move fails")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_PARTING_SHOT, player);
-            ITEM_POPUP(player, ITEM_THROAT_SPRAY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
@@ -153,7 +141,6 @@ SINGLE_BATTLE_TEST("Throat Spray does not activate if move fails")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TORCH_SONG, player);
-            ITEM_POPUP(player, ITEM_THROAT_SPRAY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         }
     }
@@ -171,7 +158,6 @@ SINGLE_BATTLE_TEST("Throat Spray does not activate if user flinches")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, player);
-            ITEM_POPUP(player, ITEM_THROAT_SPRAY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         }
     }
@@ -189,7 +175,6 @@ SINGLE_BATTLE_TEST("Throat Spray does not activate if user flinches with status 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, player);
-            ITEM_POPUP(player, ITEM_THROAT_SPRAY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         }
     }
@@ -205,7 +190,6 @@ SINGLE_BATTLE_TEST("Throat Spray is not blocked by Sheer Force")
         TURN { MOVE(player, MOVE_BUG_BUZZ); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BUZZ, player);
-        ITEM_POPUP(player, ITEM_THROAT_SPRAY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
     }
 }
@@ -221,12 +205,8 @@ SINGLE_BATTLE_TEST("Throat Spray will not activate if the mon just switched in")
         TURN { MOVE(player, MOVE_HYPER_VOICE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, player);
-        ITEM_POPUP(opponent, ITEM_RED_CARD);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent); // red card
-        NONE_OF {
-            ITEM_POPUP(player, ITEM_THROAT_SPRAY);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player); // throat spray
-        }
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player); // throat spray
     }
 }
 
@@ -251,16 +231,8 @@ DOUBLE_BATTLE_TEST("Throat Spray activates on user and bouncer if at least one t
         ABILITY_POPUP(opponentLeft, ABILITY_MAGIC_BOUNCE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
         if (ability == ABILITY_SOUNDPROOF)
-        {
-            NONE_OF {
-                ITEM_POPUP(playerLeft, ITEM_THROAT_SPRAY);
-                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
-            }
-        }
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
         else
-        {
-            ITEM_POPUP(playerLeft, ITEM_THROAT_SPRAY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
-        }
     }
 }

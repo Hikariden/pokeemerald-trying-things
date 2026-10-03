@@ -65,7 +65,8 @@ void GetCodeFeedback(void)
         gSpecialVar_Result = 1;
     else if (!StringCompare(gStringVar2, sText_CaughtEmAll))
     {
-+       for (enum NationalDexOrder i = 0; i < NATIONAL_DEX_COUNT; i++)
++       u32 i;
++       for (i = 0; i < NATIONAL_DEX_COUNT; i++)
 +       {
 +           GetSetPokedexFlag(i + 1, FLAG_SET_CAUGHT);
 +       }

@@ -70,11 +70,13 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
         if (item == ITEM_WEAKNESS_POLICY) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE);
-            MESSAGE("The opposing Wobbuffet's Attack rose sharply!");
-            MESSAGE("The opposing Wobbuffet's Sp. Atk rose sharply!");
+            MESSAGE("The Weakness Policy sharply boosted the opposing Wobbuffet's Attack!");
+            MESSAGE("The Weakness Policy sharply boosted the opposing Wobbuffet's Sp. Atk!");
         } else if (item == ITEM_ROCKY_HELMET) {
             HP_BAR(player);
+            MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Rocky Helmet!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
+            MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Rocky Helmet!");
         }
     } THEN {
         EXPECT(opponent->item == ITEM_NONE);
@@ -399,7 +401,7 @@ SINGLE_BATTLE_TEST("Knock Off does not activate if user faints (Gen9)")
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
-        ITEM_POPUP(opponent, ITEM_ROCKY_HELMET);
+        MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Rocky Helmet!");
         MESSAGE("Wobbuffet fainted!");
     } THEN {
         EXPECT(opponent->item == ITEM_ROCKY_HELMET);
@@ -420,7 +422,7 @@ SINGLE_BATTLE_TEST("Knock Off does activate if user faints (Champions)")
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
-        ITEM_POPUP(opponent, ITEM_ROCKY_HELMET);
+        MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Rocky Helmet!");
         MESSAGE("Wobbuffet fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
         MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Rocky Helmet!");

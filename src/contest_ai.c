@@ -308,7 +308,7 @@ void ContestAI_ResetAI(u8 contestantAI)
     eContestAI.aiFlags = gContestMons[eContestAI.contestantId].aiFlags;
 }
 
-enum MoveSlot ContestAI_GetActionToUse(void)
+u8 ContestAI_GetActionToUse(void)
 {
     while (eContestAI.aiFlags != 0)
     {
@@ -319,14 +319,14 @@ enum MoveSlot ContestAI_GetActionToUse(void)
         }
         eContestAI.aiFlags >>= 1;
         eContestAI.currentAIFlag++;
-        eContestAI.nextMoveIndex = MOVESLOT_0;
+        eContestAI.nextMoveIndex = 0;
     }
 
     while (1)
     {
         // Randomly choose a move index. If it's the move
         // with the highest (or tied highest) score, return
-        enum MoveSlot moveIndex = (enum MoveSlot)MOD(Random(), MAX_MON_MOVES);
+        u8 moveIndex = MOD(Random(), MAX_MON_MOVES);
         u8 score = eContestAI.moveScores[moveIndex];
         int i;
         for (i = 0; i < MAX_MON_MOVES; i++)
@@ -368,11 +368,9 @@ static void ContestAI_DoAIProcessing(void)
             }
             if (eContestAI.aiAction & AI_ACTION_DONE)
             {
-                if (eContestAI.nextMoveIndex < MOVESLOT_3)
-                {
-                    eContestAI.nextMoveIndex++;
+                eContestAI.nextMoveIndex++;
+                if (eContestAI.nextMoveIndex < MAX_MON_MOVES)
                     eContestAI.aiState = 0;
-                }
                 else
                     // aiState = CONTESTAI_FINISHED
                     eContestAI.aiState++;

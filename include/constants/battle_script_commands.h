@@ -9,11 +9,14 @@ enum BattleScriptOpcode
     B_SCR_OP_PRINTATTACKSTRING,
     B_SCR_OP_PRINTSELECTIONSTRINGFROMTABLE,
     B_SCR_OP_TYPECALC,
+    B_SCR_OP_MULTIHITRESULTMESSAGE,
     B_SCR_OP_ATTACKANIMATION,
     B_SCR_OP_WAITANIMATION,
     B_SCR_OP_HEALTHBARUPDATE,
     B_SCR_OP_DATAHPUPDATE,
+    B_SCR_OP_CRITMESSAGE,
     B_SCR_OP_EFFECTIVENESSSOUND,
+    B_SCR_OP_RESULTMESSAGE,
     B_SCR_OP_PRINTSTRING,
     B_SCR_OP_PRINTSELECTIONSTRING,
     B_SCR_OP_WAITMESSAGE,
@@ -204,7 +207,7 @@ enum BattleScriptOpcode
     B_SCR_OP_AVERAGESTATS,
     B_SCR_OP_SETNONVOLATILESTATUS,
     B_SCR_OP_TRYOVERWRITEABILITY,
-    B_SCR_OP_TRYABILITYONSTATUSCHANGE,
+    B_SCR_OP_TRY_SYNCHRONIZE,
     B_SCR_OP_TRY_CONFUSION_AFTER_SKY_DROP,
     B_SCR_OP_TRYMOVESTATCHANGES,
     B_SCR_OP_TRYSTATCHANGES,
@@ -256,7 +259,6 @@ enum BattleScriptOpcode
     B_SCR_OP_UNUSED_40,
     B_SCR_OP_UNUSED_41,
     B_SCR_OP_UNUSED_42,
-    B_SCR_OP_UNUSED_43,
     B_SCR_OP_CALLNATIVE,
 };
 
@@ -289,7 +291,7 @@ enum BattleScriptOpcode
 #define sMULTIPLAYER_ID              (gBattleScripting + 0x25) // multiplayerId
 #define sSPECIAL_TRAINER_BATTLE_TYPE (gBattleScripting + 0x26) // specialTrainerBattleType
 #define sMON_CAUGHT                  (gBattleScripting + 0x27) // monCaught
-#define sUNUSED_0x28                 (gBattleScripting + 0x28) // unused_0x28
+#define sSAVED_DMG                   (gBattleScripting + 0x28) // savedDmg
 #define sUNUSED_0x2C                 (gBattleScripting + 0x2C) // unused_0x2c
 #define sMOVE_EFFECT                 (gBattleScripting + 0x2E) // moveEffect
 #define sUNUSED_0x30                 (gBattleScripting + 0x30) // unused_0x30
@@ -388,6 +390,15 @@ enum PledgeCombo
     PLEDGE_COMBO_NONE,
     PLEDGE_COMBO_WAITING,
     PLEDGE_COMBO_ATTACK,
+};
+
+enum SynchronizeState
+{
+    SYNCH_STATE_NONE,
+    SYNCH_STATE_START,
+    SYNCH_STATE_SET_STATUS,
+    SYNCH_STATE_SHOW_ABILITY_POPUP,
+    SYNCH_STATE_END,
 };
 
 enum AssuranceDoubleDamage

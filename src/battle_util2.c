@@ -123,21 +123,21 @@ void AdjustFriendshipOnBattleFaint(enum BattlerId battler)
         AdjustFriendship(GetBattlerMon(battler), FRIENDSHIP_EVENT_FAINT_SMALL);
 }
 
-void SwitchPartyOrderInGameMulti(enum BattlerId battler, enum PartyMon partyId)
+void SwitchPartyOrderInGameMulti(enum BattlerId battler, u8 arg1)
 {
     if (IsOnPlayerSide(battler))
     {
         s32 i;
-        enum PartyMon battlerPartyId = gBattlerPartyIndexes[battler];
-        enum PartyMon switchInPartyId = partyId;
+        u8 battlerPartyId = gBattlerPartyIndexes[battler];
+        u8 switchInPartyId = arg1;
         enum BattleTrainer trainer = GetBattlerTrainer(battler);
 
         // In 6v6 multis, the partner party is stored in gParties[B_TRAINER_PARTNER]
         // and uses indexes 0-2, but we still use the combined party order.
         if (IsMultiBattle() == TRUE && !AreMultiPartiesFullTeams() && trainer == B_TRAINER_PARTNER)
         {
-            battlerPartyId = (enum PartyMon)(battlerPartyId + MULTI_PARTY_SIZE);
-            switchInPartyId = (enum PartyMon)(switchInPartyId + MULTI_PARTY_SIZE);
+            battlerPartyId += MULTI_PARTY_SIZE;
+            switchInPartyId += MULTI_PARTY_SIZE;
         }
 
         for (enum BattlerId battlerId = 0; battlerId < gBattlersCount; battlerId++)
@@ -154,7 +154,7 @@ void SwitchPartyOrderInGameMulti(enum BattlerId battler, enum PartyMon partyId)
             for (i = 0; i < (int)ARRAY_COUNT(gBattlePartyCurrentOrder); i++)
                 gBattlePartyCurrentOrder[i] = gBattleStruct->battlerPartyOrders[battlerId][i];
 
-            SwitchPartyMonSlots(GetBattleSlotFromBattlePartyId(battlerPartyId), GetBattleSlotFromBattlePartyId(switchInPartyId));
+            SwitchPartyMonSlots(GetPartyIdFromBattlePartyId(battlerPartyId), GetPartyIdFromBattlePartyId(switchInPartyId));
 
             for (i = 0; i < (int)ARRAY_COUNT(gBattlePartyCurrentOrder); i++)
                 gBattleStruct->battlerPartyOrders[battlerId][i] = gBattlePartyCurrentOrder[i];
@@ -268,7 +268,7 @@ struct Pokemon *GetTrainerParty(enum BattleTrainer trainer)
 
 struct Pokemon* GetBattlerMon(enum BattlerId battler)
 {
-    enum PartyMon index = gBattlerPartyIndexes[battler];
+    u32 index = gBattlerPartyIndexes[battler];
 
     return &GetBattlerParty(battler)[index];
 }

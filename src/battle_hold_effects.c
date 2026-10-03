@@ -14,7 +14,6 @@
 
 bool32 IsOnSwitchInActivation(enum HoldEffect holdEffect)          { return gHoldEffectsInfo[holdEffect].onSwitchIn; }
 bool32 IsMirrorHerbActivation(enum HoldEffect holdEffect)          { return gHoldEffectsInfo[holdEffect].mirrorHerb; }
-bool32 IsMentalHerbActivation(enum HoldEffect holdEffect)          { return gHoldEffectsInfo[holdEffect].mentalHerb; }
 bool32 IsWhiteHerbActivation(enum HoldEffect holdEffect)           { return gHoldEffectsInfo[holdEffect].whiteHerb; }
 bool32 IsOnStatusChangeActivation(enum HoldEffect holdEffect)      { return gHoldEffectsInfo[holdEffect].onStatusChange; }
 bool32 IsOnHpThresholdActivation(enum HoldEffect holdEffect)       { return gHoldEffectsInfo[holdEffect].onHpThreshold; }
@@ -30,7 +29,6 @@ bool32 IsOnBerryActivation(enum HoldEffect holdEffect)             { return GetI
 bool32 IsOnFlingActivation(enum HoldEffect holdEffect)             { return gHoldEffectsInfo[holdEffect].onFling; }
 bool32 IsBoosterEnergyActivation(enum HoldEffect holdEffect)       { return gHoldEffectsInfo[holdEffect].boosterEnergy; }
 bool32 IsOrbsWhiteHerbActivation(enum HoldEffect holdEffect)       { return gHoldEffectsInfo[holdEffect].orbsWhiteHerbActivation; }
-bool32 IsJabocaRowapActivation(enum HoldEffect holdEffect)         { return gHoldEffectsInfo[holdEffect].jabocaRowap; }
 
 bool32 IsForceTriggerItemActivation(enum HoldEffect holdEffect)
 {
@@ -496,7 +494,7 @@ static enum ItemEffect TryShellBell(enum BattlerId battlerAtk)
 {
     enum ItemEffect effect = ITEM_NO_EFFECT;
 
-    if (gBattleStruct->accumulatedDamage > 0
+    if (gBattleScripting.savedDmg > 0
      && !gBattleStruct->unableToUseMove
      && GetMoveEffect(gCurrentMove) != EFFECT_FUTURE_SIGHT
      && gBattleStruct->battlerState[battlerAtk].originalBattlerPartyId == PARTY_SIZE
@@ -505,7 +503,7 @@ static enum ItemEffect TryShellBell(enum BattlerId battlerAtk)
     {
         if (EmergencyExitCanBeTriggered(battlerAtk, GetBattlerAbility(battlerAtk)))
             gSpecialStatuses[battlerAtk].shellBellEmergencyExit = TRUE;
-        SetHealAmount(battlerAtk, gBattleStruct->accumulatedDamage / GetBattlerHoldEffectParam(battlerAtk));
+        SetHealAmount(battlerAtk, gBattleScripting.savedDmg / GetBattlerHoldEffectParam(battlerAtk));
         BattleScriptCall(BattleScript_ItemHealHP_Ret);
         effect = ITEM_HP_CHANGE;
     }
@@ -519,7 +517,7 @@ static enum ItemEffect TryLifeOrb(enum BattlerId battlerAtk)
 
     if (!gBattleStruct->unableToUseMove
      && gBattleStruct->battlerState[battlerAtk].originalBattlerPartyId == PARTY_SIZE
-     && IsAnyTargetTurnDamaged(battlerAtk, INCLUDING_SUBSTITUTES)
+     && (IsAnyTargetTurnDamaged(battlerAtk, INCLUDING_SUBSTITUTES) || gBattleScripting.savedDmg > 0)
      && !IsAbilityAndRecord(battlerAtk, GetBattlerAbility(battlerAtk), ABILITY_MAGIC_GUARD))
     {
         SetPassiveDamageAmount(battlerAtk, GetNonDynamaxMaxHP(battlerAtk) / 10);
@@ -536,6 +534,7 @@ static enum ItemEffect TryStickyBarbOnTargetHit(enum BattlerId battlerDef, enum 
 
     if (IsBattlerTurnDamaged(battlerDef, EXCLUDING_SUBSTITUTES)
      && !CanBattlerAvoidContactEffects(battlerAtk, battlerDef, GetBattlerAbility(battlerAtk), GetBattlerHoldEffect(battlerAtk), gCurrentMove)
+     && !DoesSubstituteBlockMove(battlerAtk, battlerDef, gCurrentMove)
      && IsBattlerAlive(battlerAtk)
      && CanStealItem(battlerAtk, battlerDef, item)
      && gBattleMons[battlerAtk].item == ITEM_NONE)

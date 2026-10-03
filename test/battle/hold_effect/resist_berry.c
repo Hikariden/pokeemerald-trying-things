@@ -53,7 +53,6 @@ SINGLE_BATTLE_TEST("Weakness berries decrease the base power of moves by half", 
         TURN { MOVE(player, move); }
     } SCENE {
         if (item != ITEM_NONE) {
-            ITEM_POPUP(opponent, item);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponent);
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
@@ -98,10 +97,7 @@ SINGLE_BATTLE_TEST("Weakness berries do not activate unless a move is super effe
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
-        NONE_OF {
-            ITEM_POPUP(opponent, item);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponent);
-        }
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponent);
     }
 }
 
@@ -123,7 +119,6 @@ SINGLE_BATTLE_TEST("Weakness berries do not decrease the power of Struggle", s16
         TURN { MOVE(player, MOVE_STRUGGLE); }
     } SCENE {
         NONE_OF {
-            ITEM_POPUP(opponent, ITEM_CHILAN_BERRY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponent);
             MESSAGE("The Chilan Berry weakened the damage to the opposing Wobbuffet!");
         }
@@ -146,7 +141,6 @@ SINGLE_BATTLE_TEST("Weakness berries do not activate if Disguise blocks the dama
         TURN { MOVE(player, MOVE_METAL_CLAW); }
     } SCENE {
         NONE_OF {
-            ITEM_POPUP(opponent, ITEM_BABIRI_BERRY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponent);
             MESSAGE("The Babiri Berry weakened the damage to the opposing Mimikyu!");
         }

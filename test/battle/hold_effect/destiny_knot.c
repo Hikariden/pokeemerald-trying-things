@@ -14,7 +14,6 @@ SINGLE_BATTLE_TEST("Destiny Knot infatuates back when holder is targeted")
     } WHEN {
         TURN { MOVE(player, MOVE_ATTRACT); }
     } SCENE {
-        ITEM_POPUP(opponent, ITEM_DESTINY_KNOT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("Wobbuffet fell in love because of the Destiny Knot!");
     } THEN {
@@ -30,7 +29,6 @@ SINGLE_BATTLE_TEST("Destiny Knot infatuates back when holder is attacking")
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        ITEM_POPUP(player, ITEM_DESTINY_KNOT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("The opposing Clefairy fell in love because of the Destiny Knot!");
     } THEN {
@@ -47,7 +45,6 @@ SINGLE_BATTLE_TEST("Destiny Knot procs but fails if the target is already infatu
     } WHEN {
         TURN { MOVE(opponent, MOVE_ATTRACT); MOVE(player, MOVE_ATTRACT,  WITH_RNG(RNG_INFATUATION, FALSE)); }
     } SCENE {
-        ITEM_POPUP(opponent, ITEM_DESTINY_KNOT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("But it failed!");
     }
@@ -61,7 +58,6 @@ SINGLE_BATTLE_TEST("Destiny Knot procs but fails if the target is oblivious")
     } WHEN {
         TURN { MOVE(player, MOVE_ATTRACT); }
     } SCENE {
-        ITEM_POPUP(opponent, ITEM_DESTINY_KNOT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         ABILITY_POPUP(player, ABILITY_OBLIVIOUS);
     } THEN {
@@ -78,7 +74,6 @@ SINGLE_BATTLE_TEST("Destiny Knot procs but fails if the target is already infatu
         TURN { MOVE(opponent, MOVE_ATTRACT); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ITEM_POPUP(opponent, ITEM_DESTINY_KNOT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("But it failed!");
     }

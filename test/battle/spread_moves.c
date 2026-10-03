@@ -1,11 +1,9 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("Spread Moves: Ability and Item effects activate correctly after a multi target move (Gen9-)")
+DOUBLE_BATTLE_TEST("Spread Moves: Ability and Item effects activate correctly after a multi target move")
 {
     GIVEN {
-        WITH_CONFIG(B_QUEUED_SWITCH_TIMINGS, GEN_9);
-        WITH_CONFIG(B_EMERGENCY_EXIT, GEN_9);
         ASSUME(gItemsInfo[ITEM_LUM_BERRY].holdEffect == HOLD_EFFECT_CURE_STATUS);
         ASSUME(gItemsInfo[ITEM_COVERT_CLOAK].holdEffect == HOLD_EFFECT_COVERT_CLOAK);
         ASSUME(gItemsInfo[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
@@ -72,9 +70,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will activate both resist
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
     } SCENE {
-        ITEM_POPUP(opponentLeft, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentLeft);
-        ITEM_POPUP(opponentRight, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
         EFFECTIVENESS_SE(opponentLeft, SE_EFFECTIVE); // effective against both
@@ -111,7 +107,6 @@ DOUBLE_BATTLE_TEST("Spread Moves: If a spread move attack will activate a resist
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
     } SCENE {
-        ITEM_POPUP(opponentRight, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
         HP_BAR(opponentLeft, captureDamage: &opponentLeftDmg[0]);
@@ -241,9 +236,9 @@ DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Eiscue and Mimikyu (Based on vanil
         TURN { MOVE(playerLeft, MOVE_EARTHQUAKE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, playerLeft);
-        ABILITY_POPUP(playerRight, ABILITY_ICE_FACE);
         ABILITY_POPUP(opponentLeft, ABILITY_DISGUISE);
         HP_BAR(opponentLeft, captureDamage: &disguiseDamage);
+        ABILITY_POPUP(playerRight, ABILITY_ICE_FACE);
         ABILITY_POPUP(opponentRight, ABILITY_ICE_FACE);
         NONE_OF {
             HP_BAR(playerRight);
@@ -272,9 +267,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: Spread move, Gem Boosted, vs Resist Berries")
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
     } SCENE {
         MESSAGE("The Normal Gem strengthened Wobbuffet's power!");
-        ITEM_POPUP(opponentLeft, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentLeft);
-        ITEM_POPUP(opponentRight, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
         HP_BAR(opponentLeft);
@@ -301,9 +294,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: Explosion, Gem Boosted, vs Resist Berries")
         MESSAGE("It doesn't affect Misdreavus…");
         MESSAGE("The Normal Gem strengthened Wobbuffet's power!");
 
-        ITEM_POPUP(opponentLeft, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentLeft);
-        ITEM_POPUP(opponentRight, ITEM_CHILAN_BERRY);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponentRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
         HP_BAR(opponentLeft);
@@ -502,8 +493,8 @@ DOUBLE_BATTLE_TEST("Spread Moves: Focus Sash activates correctly")
         MESSAGE("The opposing Wobbuffet hung on using its Focus Sash!");
         MESSAGE("The opposing Wynaut hung on using its Focus Sash!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
-        MESSAGE("Wynaut hung on using its Focus Sash!");
         MESSAGE("The opposing Wobbuffet fainted!");
+        MESSAGE("Wynaut hung on using its Focus Sash!");
         MESSAGE("The opposing Wynaut fainted!");
     }
 }

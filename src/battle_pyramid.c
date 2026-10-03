@@ -1428,7 +1428,7 @@ void GenerateBattlePyramidWildMon(enum Species forceSpecies)
             species = Random() % NUM_SPECIES;
 
         // check if base species
-        if (GetBaseSpecies(species) != species)
+        if (GET_BASE_SPECIES_ID(species) != species)
             continue;
 
         // check type

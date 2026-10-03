@@ -82,10 +82,9 @@ SINGLE_BATTLE_TEST("Dragon Tail switches the target after Rocky Helmet and Iron 
         TURN { MOVE(player, MOVE_DRAGON_TAIL); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_TAIL, player);
-        ABILITY_POPUP(opponent, ABILITY_IRON_BARBS);
         HP_BAR(player);
-        ITEM_POPUP(opponent, ITEM_ROCKY_HELMET);
         HP_BAR(player);
+        MESSAGE("Wobbuffet was hurt by the opposing Togedemaru's Rocky Helmet!");
         MESSAGE("The opposing Charmander was dragged out!");
     }
 }

@@ -70,23 +70,23 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
         else if (statId != 0) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             if (statId == STAT_ATK) {
-                MESSAGE("Wobbuffet's Attack rose!");
+                MESSAGE("The Liechi Berry boosted Wobbuffet's Attack!");
             } else if (statId == STAT_DEF) {
                 if (item == ITEM_GANLON_BERRY) {
-                    MESSAGE("Wobbuffet's Defense rose!");
+                    MESSAGE("The Ganlon Berry boosted Wobbuffet's Defense!");
                 } else {
-                    MESSAGE("Wobbuffet's Defense rose!");
+                    MESSAGE("The Kee Berry boosted Wobbuffet's Defense!");
                 }
             } else if (statId == STAT_SPDEF) {
                 if (item == ITEM_APICOT_BERRY) {
-                    MESSAGE("Wobbuffet's Sp. Def rose!");
+                    MESSAGE("The Apicot Berry boosted Wobbuffet's Sp. Def!");
                 } else {
-                    MESSAGE("Wobbuffet's Sp. Def rose!");
+                    MESSAGE("The Maranga Berry boosted Wobbuffet's Sp. Def!");
                 }
             } else if (statId == STAT_SPEED) {
-                MESSAGE("Wobbuffet's Speed rose!");
+                MESSAGE("The Salac Berry boosted Wobbuffet's Speed!");
             } else if (statId == STAT_SPATK) {
-                MESSAGE("Wobbuffet's Sp. Atk rose!");
+                MESSAGE("The Petaya Berry boosted Wobbuffet's Sp. Atk!");
             }
         }
     } THEN {

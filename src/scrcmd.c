@@ -62,7 +62,6 @@
 #include "window.h"
 #include "list_menu.h"
 #include "malloc.h"
-#include "bxpy.h"
 #include "battle.h"
 #include "constants/comparison_operators.h"
 #include "constants/event_objects.h"
@@ -2305,7 +2304,7 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
         return FALSE;
 
     move = FieldMove_GetMoveId(fieldMove);
-    for (enum PartyMon i = PARTY_MON_0; i < PARTY_MON_NONE; i++)
+    for (u32 i = 0; i < PARTY_SIZE; i++)
     {
         enum Species species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
         if (!species)
@@ -3111,7 +3110,7 @@ bool8 ScrCmd_checkobjectat(struct ScriptContext *ctx)
 
 bool8 Scrcmd_getsetpokedexflag(struct ScriptContext *ctx)
 {
-    enum NationalDexOrder natDexNum = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
+    enum NationalDexOrder speciesId = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
     u32 desiredFlag = VarGet(ScriptReadHalfword(ctx));
 
     if (desiredFlag == FLAG_SET_CAUGHT || desiredFlag == FLAG_SET_SEEN)
@@ -3119,10 +3118,10 @@ bool8 Scrcmd_getsetpokedexflag(struct ScriptContext *ctx)
     else
         Script_RequestEffects(SCREFF_V1);
 
-    gSpecialVar_Result = GetSetPokedexFlag(natDexNum, desiredFlag);
+    gSpecialVar_Result = GetSetPokedexFlag(speciesId, desiredFlag);
 
     if (desiredFlag == FLAG_SET_CAUGHT)
-        GetSetPokedexFlag(natDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(speciesId, FLAG_SET_SEEN);
 
     return FALSE;
 }
@@ -3262,7 +3261,7 @@ bool8 ScrCmd_fwdweekday(struct ScriptContext *ctx)
     return FALSE;
 }
 
-static bool32 EventEvolution(enum PartyMon partyIndex)
+static bool32 EventEvolution(u32 partyIndex)
 {
     bool32 canStopEvo = gSpecialVar_0x8000;
     enum Species targetSpecies = GetEvolutionTargetSpecies(&gParties[B_TRAINER_PLAYER][partyIndex], EVO_MODE_SCRIPT_TRIGGER, gSpecialVar_0x8005, NULL, &canStopEvo, CHECK_EVO);
@@ -3284,7 +3283,7 @@ static void TriggerMultipleEvolutions_Repeatable(void)
         gSpecialVar_0x8006++;
 
     gCB2_AfterEvolution = TriggerMultipleEvolutions_Repeatable;
-    for (enum PartyMon i = PARTY_MON_0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
     {
         if (!(gTriedEvolving & (1u << i)))
         {
@@ -3308,18 +3307,18 @@ void Script_TriggerMultipleEvolutions(struct ScriptContext *ctx)
 void Script_TriggerUniqueEvolution(struct ScriptContext *ctx)
 {
     ctx->waitAfterCallNative = TRUE;
-    if (gSpecialVar_0x8004 == PARTY_MON_CANCEL)
+    if (gSpecialVar_0x8004 == PARTY_NOTHING_CHOSEN)
     {
         gSpecialVar_Result = EVO_EVENT_IMPOSSIBLE;
         return;
     }
-    assertf(gSpecialVar_0x8004 < PARTY_MON_NONE, "TriggerEvolution script called with invalid partyIndex %d", gSpecialVar_0x8004)
+    assertf(gSpecialVar_0x8004 <= PARTY_SIZE, "TriggerEvolution script called with invalid partyIndex %d", gSpecialVar_0x8004)
     {
         gSpecialVar_Result = EVO_EVENT_IMPOSSIBLE;
         return;
     }
     gCB2_AfterEvolution = CB2_ReturnToFieldContinueScript;
-    EventEvolution((enum PartyMon)gSpecialVar_0x8004);
+    EventEvolution(gSpecialVar_0x8004);
 }
 
 void Script_EndTrainerCanSeeIf(struct ScriptContext *ctx)
@@ -3377,23 +3376,6 @@ bool8 ScrCmd_getbraillestringwidth(struct ScriptContext * ctx)
         msg = (u8 *)ctx->data[0];
 
     gSpecialVar_0x8004 = GetStringWidth(FONT_BRAILLE, msg, -1);
-    return FALSE;
-}
-
-bool8 ScrCmd_bringxpicky(struct ScriptContext *ctx)
-{
-    enum BXPYBattleTypes battleType = ScriptReadHalfword(ctx);
-    u32 bringSize = ScriptReadHalfword(ctx);
-    u32 pickSize = ScriptReadHalfword(ctx);
-    u32 trainerA = VarGet(ScriptReadHalfword(ctx));
-    const u8 *loseTextA = (const u8 *)ScriptReadWord(ctx);
-    u32 trainerB = VarGet(ScriptReadHalfword(ctx));
-    const u8 *loseTextB = (const u8 *)ScriptReadWord(ctx);
-    u32 partner = VarGet(ScriptReadHalfword(ctx));
-
-    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
-
-    BXPY_Init(battleType, bringSize, pickSize, trainerA, loseTextA, trainerB, loseTextB, partner);
     return FALSE;
 }
 
